@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title id="pageTitle">Destellos by Yoki - Bisutería Artesanal</title>
   <meta name="description" content="Descubre piezas de bisutería, decoración y crochet hechas a mano con dedicación, creatividad y amor en cada detalle.">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,9 +39,22 @@
     }
   </script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { background-color: #F7F4EF; color: #2C2C2C; font-family: 'DM Sans', sans-serif; }
+    /* ESCALADO MODERADO - TODO UN POCO MÁS PEQUEÑO */
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 93.75%; /* 15px en lugar de 16px (solo 6.25% más pequeño) */
+    }
+    body { 
+      background-color: #F7F4EF; 
+      color: #2C2C2C; 
+      font-family: 'DM Sans', sans-serif; 
+    }
     .font-serif { font-family: 'Playfair Display', serif; }
+    
+    /* Reducir ligeramente espaciados */
+    .max-w-7xl {
+      max-width: 76rem !important;
+    }
     
     .boty-shadow {
       box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
@@ -172,7 +185,7 @@
       transform: translateZ(0);
     }
 
-    .cart-item-image { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+    .cart-item-image { width: 75px; height: 75px; object-fit: cover; border-radius: 8px; }
     .cart-item { transition: background-color 0.3s ease; }
     .cart-item:hover { background-color: rgba(0,0,0,0.02); }
 
@@ -199,8 +212,8 @@
 
     .modal-content {
       background-color: #F7F4EF;
-      border-radius: 24px;
-      max-width: 600px;
+      border-radius: 22px;
+      max-width: 560px;
       width: 90%;
       max-height: 90vh;
       overflow-y: auto;
@@ -216,7 +229,7 @@
       resize: none;
       border: 1px solid #D8CFC4;
       border-radius: 12px;
-      padding: 12px;
+      padding: 10px;
       width: 100%;
       font-family: 'DM Sans', sans-serif;
       transition: border-color 0.3s ease;
@@ -230,8 +243,8 @@
     .modal-product-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
+      gap: 10px;
+      padding: 10px;
       border-bottom: 1px solid #D8CFC4;
       transition: background-color 0.3s ease;
     }
@@ -245,8 +258,8 @@
     }
 
     .modal-product-image {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -292,10 +305,10 @@
 
     .login-modal-content {
       background-color: #F7F4EF;
-      border-radius: 24px;
+      border-radius: 22px;
       max-width: 400px;
       width: 90%;
-      padding: 2rem;
+      padding: 1.8rem;
       transform: translateY(-20px);
       transition: all 0.3s ease;
     }
@@ -307,9 +320,9 @@
     .admin-badge {
       background-color: #4F5B3A;
       color: #F7F4EF;
-      padding: 4px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 11px;
       margin-left: 8px;
     }
 
@@ -329,8 +342,8 @@
     .admin-button {
       background-color: #4F5B3A;
       color: #F7F4EF;
-      width: 50px;
-      height: 50px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -356,8 +369,8 @@
       border: 3px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
       border-top: 3px solid #4F5B3A;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       animation: spin 1s linear infinite;
       margin: 0 auto;
     }
@@ -390,8 +403,8 @@
 
     .loading-content {
       background-color: #F7F4EF;
-      padding: 2rem;
-      border-radius: 24px;
+      padding: 1.8rem;
+      border-radius: 22px;
       text-align: center;
       max-width: 300px;
       width: 90%;
@@ -415,6 +428,20 @@
         justify-content: flex-start;
       }
     }
+    
+    /* Ajustes ligeros de espaciado */
+    section.py-24 {
+      padding-top: 5rem !important;
+      padding-bottom: 5rem !important;
+    }
+    
+    .gap-8 {
+      gap: 1.75rem !important;
+    }
+    
+    .mb-16 {
+      margin-bottom: 3rem !important;
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -428,37 +455,37 @@
 
   <!-- Modal para Checkout (Carrito Completo) -->
   <div id="checkoutModal" class="modal-overlay">
-    <div class="modal-content p-8">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-7">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Finalizar Pedido</h3>
         <button onclick="closeCheckoutModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-6">
-        <h4 class="font-medium text-foreground mb-3">Productos en tu carrito:</h4>
-        <div id="checkoutProductsList" class="max-h-60 overflow-y-auto border border-border rounded-lg mb-4"></div>
-        <div class="bg-card p-4 rounded-lg mb-4">
+      <div class="mb-5">
+        <h4 class="font-medium text-foreground mb-2">Productos en tu carrito:</h4>
+        <div id="checkoutProductsList" class="max-h-60 overflow-y-auto border border-border rounded-lg mb-3"></div>
+        <div class="bg-card p-3 rounded-lg mb-3">
           <div class="flex justify-between items-center">
             <span class="font-medium text-foreground">Total del pedido:</span>
             <span id="checkoutTotal" class="font-medium text-foreground text-lg">$0</span>
           </div>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Notas adicionales para el pedido (opcional)</label>
-          <textarea id="checkoutNotas" class="notas-textarea" rows="3" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
+        <div class="mb-3">
+          <label class="text-sm font-medium text-foreground mb-1 block">Notas adicionales para el pedido (opcional)</label>
+          <textarea id="checkoutNotas" class="notas-textarea" rows="2" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
         </div>
-        <div class="bg-primary/5 rounded-lg p-4">
-          <p class="text-sm text-foreground/70">
+        <div class="bg-primary/5 rounded-lg p-3">
+          <p class="text-xs text-foreground/70">
             <span class="font-medium text-primary">📱 WhatsApp:</span> Te contactaremos al número que uses para enviar el mensaje.
           </p>
         </div>
       </div>
-      <div class="flex gap-4">
-        <button onclick="sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Enviar Pedido por WhatsApp</button>
-        <button onclick="closeCheckoutModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium hover:bg-primary/90 boty-transition">Enviar Pedido por WhatsApp</button>
+        <button onclick="closeCheckoutModal()" class="flex-1 border border-border text-foreground px-5 py-2.5 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
       </div>
     </div>
   </div>
@@ -466,28 +493,28 @@
   <!-- Modal de Login para Administrador -->
   <div id="loginModal" class="login-modal">
     <div class="login-modal-content">
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Acceso</h3>
         <button onclick="closeLoginModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-4">
-        <label class="text-sm font-medium text-foreground mb-2 block">Email</label>
-        <input type="email" id="loginEmail" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
+      <div class="mb-3">
+        <label class="text-sm font-medium text-foreground mb-1 block">Email</label>
+        <input type="email" id="loginEmail" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
       </div>
-      <div class="mb-6">
-        <label class="text-sm font-medium text-foreground mb-2 block">Contraseña</label>
-        <input type="password" id="loginPassword" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
+      <div class="mb-5">
+        <label class="text-sm font-medium text-foreground mb-1 block">Contraseña</label>
+        <input type="password" id="loginPassword" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
       </div>
-      <div class="flex gap-4">
-        <button onclick="handleLogin()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Iniciar Sesión</button>
-        <button onclick="closeLoginModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="handleLogin()" class="flex-1 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium hover:bg-primary/90 boty-transition">Iniciar Sesión</button>
+        <button onclick="closeLoginModal()" class="flex-1 border border-border text-foreground px-5 py-2.5 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
       </div>
-      <div class="mt-4 text-center">
-        <button onclick="closeLoginModal(); openResetPasswordModal()" class="text-sm text-primary hover:underline">¿Olvidaste tu contraseña?</button>
+      <div class="mt-3 text-center">
+        <button onclick="closeLoginModal(); openResetPasswordModal()" class="text-xs text-primary hover:underline">¿Olvidaste tu contraseña?</button>
       </div>
     </div>
   </div>
@@ -495,77 +522,77 @@
   <!-- Modal de Recuperación de Contraseña -->
   <div id="resetPasswordModal" class="login-modal">
     <div class="login-modal-content">
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Recuperar contraseña</h3>
         <button onclick="closeResetPasswordModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-4">
-        <label class="text-sm font-medium text-foreground mb-2 block">Correo electrónico</label>
-        <input type="email" id="resetEmail" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="tucorreo@ejemplo.com">
+      <div class="mb-3">
+        <label class="text-sm font-medium text-foreground mb-1 block">Correo electrónico</label>
+        <input type="email" id="resetEmail" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="tucorreo@ejemplo.com">
       </div>
-      <div class="flex gap-4">
-        <button onclick="sendPasswordReset()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Enviar instrucciones</button>
-        <button onclick="closeResetPasswordModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="sendPasswordReset()" class="flex-1 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium hover:bg-primary/90 boty-transition">Enviar instrucciones</button>
+        <button onclick="closeResetPasswordModal()" class="flex-1 border border-border text-foreground px-5 py-2.5 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
       </div>
-      <div class="mt-4 text-center">
-        <button onclick="closeResetPasswordModal(); openLoginModal()" class="text-sm text-primary hover:underline">Volver al inicio de sesión</button>
+      <div class="mt-3 text-center">
+        <button onclick="closeResetPasswordModal(); openLoginModal()" class="text-xs text-primary hover:underline">Volver al inicio de sesión</button>
       </div>
     </div>
   </div>
 
   <!-- Modal de Configuración (Redes Sociales + Nombre del sitio) -->
   <div id="settingsModal" class="modal-overlay">
-    <div class="modal-content p-8 max-w-lg">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-7 max-w-lg">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Configuración</h3>
         <button onclick="closeSettingsModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-6">
-        <h4 class="font-medium text-foreground mb-4 pb-2 border-b border-border">Información del sitio</h4>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Nombre del sitio (logo y footer)</label>
-          <input type="text" id="settingsSiteName" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
+      <div class="mb-5">
+        <h4 class="font-medium text-foreground mb-3 pb-2 border-b border-border">Información del sitio</h4>
+        <div class="mb-3">
+          <label class="text-sm font-medium text-foreground mb-1 block">Nombre del sitio (logo y footer)</label>
+          <input type="text" id="settingsSiteName" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
           <p class="text-xs text-muted-foreground mt-1">Este nombre aparecerá en el logo del header y en el footer.</p>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Título SEO (title de la pestaña)</label>
-          <input type="text" id="settingsSiteTitle" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
+        <div class="mb-3">
+          <label class="text-sm font-medium text-foreground mb-1 block">Título SEO (title de la pestaña)</label>
+          <input type="text" id="settingsSiteTitle" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
           <p class="text-xs text-muted-foreground mt-1">Aparecerá en la pestaña del navegador.</p>
         </div>
         
-        <h4 class="font-medium text-foreground mb-4 mt-6 pb-2 border-b border-border">Redes Sociales</h4>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Número de WhatsApp</label>
+        <h4 class="font-medium text-foreground mb-3 mt-5 pb-2 border-b border-border">Redes Sociales</h4>
+        <div class="mb-3">
+          <label class="text-sm font-medium text-foreground mb-1 block">Número de WhatsApp</label>
           <div class="flex gap-2">
-            <input type="text" id="settingsWhatsapp" class="flex-1 px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
+            <input type="text" id="settingsWhatsapp" class="flex-1 px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
           </div>
           <p class="text-xs text-muted-foreground mt-1">Solo el número, sin espacios ni símbolos</p>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">URL de Instagram</label>
-          <input type="text" id="settingsInstagram" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
+        <div class="mb-3">
+          <label class="text-sm font-medium text-foreground mb-1 block">URL de Instagram</label>
+          <input type="text" id="settingsInstagram" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">URL de Facebook</label>
-          <input type="text" id="settingsFacebook" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
+        <div class="mb-3">
+          <label class="text-sm font-medium text-foreground mb-1 block">URL de Facebook</label>
+          <input type="text" id="settingsFacebook" class="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
         </div>
-        <div class="bg-primary/5 rounded-lg p-4">
-          <p class="text-sm text-foreground/70">
+        <div class="bg-primary/5 rounded-lg p-3">
+          <p class="text-xs text-foreground/70">
             <span class="font-medium text-primary">ℹ️ Información:</span> Estos datos se usarán en todos los enlaces de redes sociales y en el nombre visible de la página.
           </p>
         </div>
       </div>
-      <div class="flex gap-4">
-        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Guardar Configuración</button>
-        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium hover:bg-primary/90 boty-transition">Guardar Configuración</button>
+        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-5 py-2.5 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
       </div>
     </div>
   </div>
@@ -573,40 +600,40 @@
   <!-- Header -->
   <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
     <nav class="max-w-7xl mx-auto px-6 lg:px-8 backdrop-blur-md rounded-lg py-0 my-0 animate-scale-fade-in bg-white/40 border border-white/30" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;">
-      <div class="flex items-center justify-between h-[68px]">
-        <button type="button" class="lg:hidden p-2 text-white hover:text-white/80 boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
-          <svg class="w-5 h-5" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-center justify-between h-[62px]">
+        <button type="button" class="lg:hidden p-1.5 text-white hover:text-white/80 boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
+          <svg class="w-4 h-4" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
-          <svg class="w-5 h-5 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
-        <div class="hidden lg:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-7">
           <a href="shop.html" class="text-sm text-white tracking-wide hover:text-white/80 boty-transition">Catálogo</a>
           <a href="about.html" class="text-sm text-white tracking-wide hover:text-white/80 boty-transition">Sobre nosotros</a>
           <a href="#contactanos" class="text-sm text-white tracking-wide hover:text-white/80 boty-transition">Contáctanos</a>
         </div>
         <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
-          <h1 id="siteLogo" class="font-serif text-white text-3xl tracking-wider"> </h1>
+          <h1 id="siteLogo" class="font-serif text-white text-2xl tracking-wider"> </h1>
         </a>
-        <div class="flex items-center gap-4">
-          <a href="#" onclick="openLoginModal()" class="hidden sm:block p-2 text-white hover:text-white/80 boty-transition" aria-label="Account">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-3">
+          <a href="#" onclick="openLoginModal()" class="hidden sm:block p-1.5 text-white hover:text-white/80 boty-transition" aria-label="Account">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
           </a>
-          <button type="button" id="cartBtn" class="relative p-2 text-white hover:text-white/80 boty-transition" aria-label="Cart">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button type="button" id="cartBtn" class="relative p-1.5 text-white hover:text-white/80 boty-transition" aria-label="Cart">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
-            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-4 h-4 bg-primary text-primary-foreground text-[10px] flex items-center justify-center rounded-full">0</span>
+            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-3.5 h-3.5 bg-primary text-primary-foreground text-[9px] flex items-center justify-center rounded-full">0</span>
           </button>
         </div>
       </div>
       <div id="mobileMenu" class="lg:hidden overflow-hidden boty-transition max-h-0">
-        <div class="flex flex-col gap-4 pt-4 pb-6 border-t border-border/50">
+        <div class="flex flex-col gap-3 pt-3 pb-5 border-t border-border/50">
           <a href="shop.html" class="text-sm text-white tracking-wide text-foreground/70 hover:text-foreground boty-transition">Catálogo</a>
           <a href="about.html" class="text-sm text-white tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
           <a href="#contactanos" class="text-sm text-white tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
@@ -619,36 +646,36 @@
   <!-- Cart Drawer -->
   <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/50" id="cartOverlay"></div>
-    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[440px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
+    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[420px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
       <div class="flex flex-col h-full">
-        <div class="border-b border-border/50 p-6 py-4 flex items-center justify-between">
+        <div class="border-b border-border/50 p-5 py-3.5 flex items-center justify-between">
           <div>
-            <h2 class="font-serif text-2xl">Carrito</h2>
-            <p class="text-sm text-muted-foreground" id="cartItemsText">0 artículos</p>
+            <h2 class="font-serif text-xl">Carrito</h2>
+            <p class="text-xs text-muted-foreground" id="cartItemsText">0 artículos</p>
           </div>
-          <button type="button" id="closeCartBtn" class="p-2 text-foreground/70 hover:text-foreground">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button type="button" id="closeCartBtn" class="p-1.5 text-foreground/70 hover:text-foreground">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
-        <div class="flex-1 overflow-y-auto p-6" id="cartItems">
+        <div class="flex-1 overflow-y-auto p-5" id="cartItems">
           <div class="flex flex-col items-center justify-center h-full text-center" id="emptyCart">
-            <svg class="w-12 h-12 text-muted-foreground/50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-10 h-10 text-muted-foreground/50 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
-            <p class="text-muted-foreground">Tu carrito está vacío</p>
-            <button type="button" onclick="closeCart()" class="mt-4 text-primary hover:underline text-sm">Seguir comprando</button>
+            <p class="text-sm text-muted-foreground">Tu carrito está vacío</p>
+            <button type="button" onclick="closeCart()" class="mt-3 text-primary hover:underline text-xs">Seguir comprando</button>
           </div>
-          <div id="cartItemsList" class="space-y-6 hidden"></div>
+          <div id="cartItemsList" class="space-y-5 hidden"></div>
         </div>
-        <div id="cartFooter" class="hidden border-t border-border/50 p-6 space-y-4">
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between text-muted-foreground"><span>Subtotal</span><span id="subtotal">$0</span></div>
+        <div id="cartFooter" class="hidden border-t border-border/50 p-5 space-y-3">
+          <div class="space-y-1 text-sm">
+            <div class="flex justify-between text-xs text-muted-foreground"><span>Subtotal</span><span id="subtotal">$0</span></div>
             <div class="flex justify-between text-base font-medium text-foreground pt-2 border-t border-border/50"><span>Total</span><span id="total">$0</span></div>
           </div>
-          <button type="button" onclick="openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-4 rounded-full font-medium hover:bg-primary/90 boty-transition">Pagar</button>
-          <button type="button" onclick="closeCart()" class="w-full border border-border text-foreground py-4 rounded-full font-medium hover:bg-muted boty-transition">Seguir comprando</button>
+          <button type="button" onclick="openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Pagar</button>
+          <button type="button" onclick="closeCart()" class="w-full border border-border text-foreground py-3 rounded-full font-medium hover:bg-muted boty-transition">Seguir comprando</button>
         </div>
       </div>
     </div>
@@ -657,13 +684,13 @@
   <!-- Panel de Administración -->
   <div id="adminPanel" class="admin-controls">
     <div class="admin-button" onclick="window.location.href='shop.html'" title="Administrar productos">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
     </div>
     <div class="admin-button settings-button" onclick="openSettingsModal()" title="Configuración">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
     </div>
     <div class="admin-button logout-button" onclick="handleLogout()" title="Cerrar sesión">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4 4m4-4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
     </div>
   </div>
 
@@ -689,14 +716,14 @@
       <div class="relative z-20 w-full pt-20">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 hero-content-wrapper">
           <div class="w-full max-w-xl text-center lg:text-left">
-            <span class="text-sm uppercase mb-6 block text-white drop-shadow-lg animate-blur-in tracking-normal" style="animation-delay: 0.2s;">Hecho a mano con amor</span>
-            <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6 text-white drop-shadow-lg">
+            <span class="text-xs uppercase mb-5 block text-white drop-shadow-lg animate-blur-in tracking-normal" style="animation-delay: 0.2s;">Hecho a mano con amor</span>
+            <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-5 text-white drop-shadow-lg">
               <span class="block animate-blur-in font-semibold" style="animation-delay: 0.4s;">Detalles únicos.</span>
-              <span class="block animate-blur-in font-semibold xl:text-8xl text-7xl" style="animation-delay: 0.6s;">Hechos para ti.</span>
+              <span class="block animate-blur-in font-semibold xl:text-7xl text-6xl" style="animation-delay: 0.6s;">Hechos para ti.</span>
             </h2>
-            <p class="text-lg leading-relaxed mb-10 max-w-md mx-auto lg:mx-0 text-white drop-shadow-md animate-blur-in" style="animation-delay: 0.8s;">Descubre piezas de bisutería, decoración y crochet hechas a mano con dedicación, creatividad y amor en cada detalle.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-blur-in" style="animation-delay: 1s;">
-              <a href="shop.html" class="group inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full text-sm tracking-wide boty-transition hover:bg-primary/90 boty-shadow">Ver productos<svg class="w-4 h-4 group-hover:translate-x-1 boty-transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
+            <p class="text-base leading-relaxed mb-8 max-w-md mx-auto lg:mx-0 text-white drop-shadow-md animate-blur-in" style="animation-delay: 0.8s;">Descubre piezas de bisutería, decoración y crochet hechas a mano con dedicación, creatividad y amor en cada detalle.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start animate-blur-in" style="animation-delay: 1s;">
+              <a href="shop.html" class="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full text-sm tracking-wide boty-transition hover:bg-primary/90 boty-shadow">Ver productos<svg class="w-3.5 h-3.5 group-hover:translate-x-1 boty-transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
             </div>
           </div>
         </div>
@@ -704,146 +731,146 @@
     </section>
 
     <!-- Redes Sociales -->
-    <section id="contactanos" class="py-24 bg-card">
+    <section id="contactanos" class="py-20 bg-card">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <span class="text-sm tracking-[0.3em] uppercase text-primary mb-4 block">@destellosbyyoki</span>
-          <h2 class="font-serif text-4xl md:text-7xl leading-tight text-foreground mb-6">Explora nuestra tienda</h2>
-          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Descubre piezas únicas hechas a mano en Destellos by Yoki y encuentra el detalle perfecto para cada ocasión.</p>
+        <div class="text-center mb-14">
+          <span class="text-[0.7rem] tracking-[0.3em] uppercase text-primary mb-3 block">@destellosbyyoki</span>
+          <h2 class="font-serif text-4xl md:text-6xl leading-tight text-foreground mb-5">Explora nuestra tienda</h2>
+          <p class="text-base text-muted-foreground max-w-2xl mx-auto">Descubre piezas únicas hechas a mano en Destellos by Yoki y encuentra el detalle perfecto para cada ocasión.</p>
         </div>
-        <div class="flex flex-wrap justify-center gap-6 mb-16" id="socialLinksContainer"></div>
-        <div class="relative overflow-hidden rounded-2xl boty-shadow max-w-4xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-5 mb-14" id="socialLinksContainer"></div>
+        <div class="relative overflow-hidden rounded-xl boty-shadow max-w-4xl mx-auto">
           <div id="carouselContainer" class="flex transition-transform duration-500 ease-in-out">
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello50.jpeg" alt="Destello LV producto artesanal" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello51.jpeg" alt="Bisutería Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello53.jpeg" alt="Decoración Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello57.jpeg" alt="Crochet Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello5.jpeg" alt="Collares Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello6.jpeg" alt="Pulseras Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello7.jpeg" alt="Aretes Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello8.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello1.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello2.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
-            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello3.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-6 pointer-events-none"><span class="text-white text-lg font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello50.jpeg" alt="Destello LV producto artesanal" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello51.jpeg" alt="Bisutería Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello53.jpeg" alt="Decoración Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello57.jpeg" alt="Crochet Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello5.jpeg" alt="Collares Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello6.jpeg" alt="Pulseras Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello7.jpeg" alt="Aretes Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello8.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello1.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello2.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
+            <div class="w-full flex-shrink-0"><div class="relative aspect-[4/3] md:aspect-[16/9]"><img src="img/Destello3.jpeg" alt="Regalos Destellos by Yoki" class="w-full h-full object-contain bg-card carousel-image"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5 pointer-events-none"><span class="text-white text-base font-medium drop-shadow-lg">@destellosbyyoki</span></div></div></div>
           </div>
-          <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-foreground w-10 h-10 rounded-full flex items-center justify-center boty-transition boty-shadow z-30"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
-          <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-foreground w-10 h-10 rounded-full flex items-center justify-center boty-transition boty-shadow z-30"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
-          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="0"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="1"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="2"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="3"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="4"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="5"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="6"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="7"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="8"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="9"></button>
-            <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="10"></button>
+          <button id="prevBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-foreground w-8 h-8 rounded-full flex items-center justify-center boty-transition boty-shadow z-30"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+          <button id="nextBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-foreground w-8 h-8 rounded-full flex items-center justify-center boty-transition boty-shadow z-30"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="0"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="1"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="2"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="3"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="4"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="5"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="6"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="7"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="8"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="9"></button>
+            <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 hover:bg-white transition-colors" data-index="10"></button>
           </div>
         </div>
-        <div class="text-center mt-12">
-          <a href="#" id="instagramLink" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary hover:text-primary/80 boty-transition font-medium"><span>Ver más en Instagram</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        <div class="text-center mt-10">
+          <a href="#" id="instagramLink" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary hover:text-primary/80 boty-transition font-medium text-sm"><span>Ver más en Instagram</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
         </div>
       </div>
     </section>
 
     <!-- Valores -->
-    <section class="py-24 bg-primary">
+    <section class="py-20 bg-primary">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <span class="text-sm tracking-[0.3em] uppercase text-primary-foreground/80 mb-4 block">Hecho a mano. Con amor.</span>
-          <h2 class="font-serif text-4xl md:text-7xl leading-tight text-primary-foreground mb-6">Nuestro compromiso</h2>
-          <p class="text-lg text-primary-foreground/80 max-w-2xl mx-auto">Cada pieza es creada con dedicación, utilizando materiales de calidad y poniendo especial atención en cada detalle.</p>
+        <div class="text-center mb-14">
+          <span class="text-[0.7rem] tracking-[0.3em] uppercase text-primary-foreground/80 mb-3 block">Hecho a mano. Con amor.</span>
+          <h2 class="font-serif text-4xl md:text-6xl leading-tight text-primary-foreground mb-5">Nuestro compromiso</h2>
+          <p class="text-base text-primary-foreground/80 max-w-2xl mx-auto">Cada pieza es creada con dedicación, utilizando materiales de calidad y poniendo especial atención en cada detalle.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 text-center boty-shadow">
-            <div class="w-16 h-16 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
-            <h3 class="font-serif text-2xl text-primary-foreground mb-3">Hecho a mano</h3>
-            <p class="text-primary-foreground/70">Cada pieza es elaborada artesanalmente, con técnicas tradicionales y mucho cariño.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+          <div class="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-7 text-center boty-shadow">
+            <div class="w-14 h-14 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-5"><svg class="w-7 h-7 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
+            <h3 class="font-serif text-xl text-primary-foreground mb-2">Hecho a mano</h3>
+            <p class="text-sm text-primary-foreground/70">Cada pieza es elaborada artesanalmente, con técnicas tradicionales y mucho cariño.</p>
           </div>
-          <div class="bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 text-center boty-shadow">
-            <div class="w-16 h-16 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></div>
-            <h3 class="font-serif text-2xl text-primary-foreground mb-3">Materiales de calidad</h3>
-            <p class="text-primary-foreground/70">Seleccionamos cuidadosamente cada material para garantizar durabilidad y belleza.</p>
+          <div class="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-7 text-center boty-shadow">
+            <div class="w-14 h-14 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-5"><svg class="w-7 h-7 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></div>
+            <h3 class="font-serif text-xl text-primary-foreground mb-2">Materiales de calidad</h3>
+            <p class="text-sm text-primary-foreground/70">Seleccionamos cuidadosamente cada material para garantizar durabilidad y belleza.</p>
           </div>
-          <div class="bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 text-center boty-shadow">
-            <div class="w-16 h-16 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
-            <h3 class="font-serif text-2xl text-primary-foreground mb-3">Diseños únicos</h3>
-            <p class="text-primary-foreground/70">Creaciones exclusivas que no encontrarás en ningún otro lugar, pensadas para ti.</p>
+          <div class="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-7 text-center boty-shadow">
+            <div class="w-14 h-14 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-5"><svg class="w-7 h-7 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
+            <h3 class="font-serif text-xl text-primary-foreground mb-2">Diseños únicos</h3>
+            <p class="text-sm text-primary-foreground/70">Creaciones exclusivas que no encontrarás en ningún otro lugar, pensadas para ti.</p>
           </div>
         </div>
-        <div class="text-center mt-12"><a href="shop.html" class="inline-flex items-center gap-2 text-primary-foreground hover:text-primary-foreground/80 boty-transition font-medium border-b border-primary-foreground/30 pb-1"><span>Descubre nuestras creaciones</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        <div class="text-center mt-10"><a href="shop.html" class="inline-flex items-center gap-1.5 text-primary-foreground hover:text-primary-foreground/80 boty-transition font-medium text-sm border-b border-primary-foreground/30 pb-1"><span>Descubre nuestras creaciones</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
       </div>
     </section>
 
     <!-- Testimonios -->
-    <section class="py-24 bg-background relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/30 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+    <section class="py-20 bg-background relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 bg-secondary/30 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
       <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-          <span class="text-sm tracking-[0.3em] uppercase text-primary mb-4 block">Love Notes</span>
-          <h2 class="font-serif text-4xl md:text-6xl leading-tight text-foreground mb-6">Lo que dicen <br class="hidden sm:block">nuestros clientes</h2>
-          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Cada creación lleva un pedacito de nuestro corazón, y nos encanta saber que llegan al tuyo.</p>
+        <div class="text-center mb-14">
+          <span class="text-[0.7rem] tracking-[0.3em] uppercase text-primary mb-3 block">Love Notes</span>
+          <h2 class="font-serif text-4xl md:text-6xl leading-tight text-foreground mb-5">Lo que dicen <br class="hidden sm:block">nuestros clientes</h2>
+          <p class="text-base text-muted-foreground max-w-2xl mx-auto">Cada creación lleva un pedacito de nuestro corazón, y nos encanta saber que llegan al tuyo.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="group bg-white/50 backdrop-blur-sm rounded-3xl p-8 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/30">
-            <div class="flex items-center gap-1 mb-6"><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-foreground/80 italic mb-6 leading-relaxed">"Compré unos aros de crochet para regalar y fue un éxito. La calidad es increíble y el diseño es súper delicado. Definitivamente volveré a comprar."</p>
-            <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">MC</div><div><h4 class="font-medium text-foreground">María C.</h4><p class="text-xs text-muted-foreground">Cliente frecuente</p></div></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+          <div class="group bg-white/50 backdrop-blur-sm rounded-2xl p-7 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/30">
+            <div class="flex items-center gap-1 mb-5"><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <p class="text-foreground/80 italic mb-5 leading-relaxed">"Compré unos aros de crochet para regalar y fue un éxito. La calidad es increíble y el diseño es súper delicado. Definitivamente volveré a comprar."</p>
+            <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">MC</div><div><h4 class="font-medium text-foreground">María C.</h4><p class="text-xs text-muted-foreground">Cliente frecuente</p></div></div>
           </div>
-          <div class="group bg-white/50 backdrop-blur-sm rounded-3xl p-8 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/30 md:translate-y-4">
-            <div class="flex items-center gap-1 mb-6"><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-foreground/80 italic mb-6 leading-relaxed">"Me encanta la originalidad de las piezas. Compré un collar de bisutería y los detalles son simplemente preciosos. Se nota que está hecho con mucho amor."</p>
-            <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">AR</div><div><h4 class="font-medium text-foreground">Andrea R.</h4><p class="text-xs text-muted-foreground">Amante del arte</p></div></div>
+          <div class="group bg-white/50 backdrop-blur-sm rounded-2xl p-7 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/30 md:translate-y-3">
+            <div class="flex items-center gap-1 mb-5"><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <p class="text-foreground/80 italic mb-5 leading-relaxed">"Me encanta la originalidad de las piezas. Compré un collar de bisutería y los detalles son simplemente preciosos. Se nota que está hecho con mucho amor."</p>
+            <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">AR</div><div><h4 class="font-medium text-foreground">Andrea R.</h4><p class="text-xs text-muted-foreground">Amante del arte</p></div></div>
           </div>
-          <div class="group bg-white/50 backdrop-blur-sm rounded-3xl p-8 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/30">
-            <div class="flex items-center gap-1 mb-6"><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-foreground/80 italic mb-6 leading-relaxed">"El servicio es excelente y los productos de decoración son hermosos. Compré un mandala tejido y le dio un toque único a mi sala. Súper recomendado."</p>
-            <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">LP</div><div><h4 class="font-medium text-foreground">Laura P.</h4><p class="text-xs text-muted-foreground">Diseñadora de interiores</p></div></div>
+          <div class="group bg-white/50 backdrop-blur-sm rounded-2xl p-7 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/30">
+            <div class="flex items-center gap-1 mb-5"><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <p class="text-foreground/80 italic mb-5 leading-relaxed">"El servicio es excelente y los productos de decoración son hermosos. Compré un mandala tejido y le dio un toque único a mi sala. Súper recomendado."</p>
+            <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">LP</div><div><h4 class="font-medium text-foreground">Laura P.</h4><p class="text-xs text-muted-foreground">Diseñadora de interiores</p></div></div>
           </div>
         </div>
-        <div class="text-center mt-20">
-          <div class="inline-block bg-primary/5 rounded-full px-6 py-3 boty-shadow"><p class="text-sm font-medium text-primary">✨ ¿Ya tienes tu pieza favorita? ✨</p></div>
-          <p class="text-muted-foreground mt-6 max-w-md mx-auto">Nos encanta saber de ti. Comparte tu experiencia con <a href="#" id="footerInstagramLink" target="_blank" class="text-primary font-medium hover:underline">@destellosbyyoki</a></p>
+        <div class="text-center mt-16">
+          <div class="inline-block bg-primary/5 rounded-full px-5 py-2 boty-shadow"><p class="text-xs font-medium text-primary">✨ ¿Ya tienes tu pieza favorita? ✨</p></div>
+          <p class="text-sm text-muted-foreground mt-5 max-w-md mx-auto">Nos encanta saber de ti. Comparte tu experiencia con <a href="#" id="footerInstagramLink" target="_blank" class="text-primary font-medium hover:underline">@destellosbyyoki</a></p>
         </div>
       </div>
     </section>
 
     <!-- Por qué elegirnos -->
-    <section class="py-24 bg-primary relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-      <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+    <section class="py-20 bg-primary relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
       <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16"><span class="text-sm tracking-[0.3em] uppercase text-primary-foreground/70 mb-4 block">Hecho con amor</span><h2 class="font-serif text-4xl md:text-6xl leading-tight text-primary-foreground mb-6">¿Por qué elegirnos?</h2><p class="text-lg text-primary-foreground/80 max-w-2xl mx-auto">Pequeños detalles que marcan la diferencia en cada una de nuestras creaciones.</p></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="group bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-2 border border-white/20 text-center"><div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 boty-transition"><svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div><h3 class="font-serif text-2xl text-white mb-3">Hecho a mano</h3><p class="text-white/70">Cada pieza es elaborada una por una con técnicas artesanales, dedicación y mucho cariño.</p></div>
-          <div class="group bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-2 border border-white/20 text-center"><div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 boty-transition"><svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3 class="font-serif text-2xl text-white mb-3">Materiales de calidad</h3><p class="text-white/70">Seleccionamos cuidadosamente cada material para garantizar durabilidad y belleza en cada detalle.</p></div>
-          <div class="group bg-primary-foreground/10 backdrop-blur-sm rounded-3xl p-8 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-2 border border-white/20 text-center"><div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 boty-transition"><svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div><h3 class="font-serif text-2xl text-white mb-3">Diseños únicos</h3><p class="text-white/70">Creaciones exclusivas que no encontrarás en ningún otro lugar, pensadas para cada cliente.</p></div>
+        <div class="text-center mb-14"><span class="text-[0.7rem] tracking-[0.3em] uppercase text-primary-foreground/70 mb-3 block">Hecho con amor</span><h2 class="font-serif text-4xl md:text-6xl leading-tight text-primary-foreground mb-5">¿Por qué elegirnos?</h2><p class="text-base text-primary-foreground/80 max-w-2xl mx-auto">Pequeños detalles que marcan la diferencia en cada una de nuestras creaciones.</p></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+          <div class="group bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-7 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/20 text-center"><div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 boty-transition"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div><h3 class="font-serif text-xl text-white mb-2">Hecho a mano</h3><p class="text-sm text-white/70">Cada pieza es elaborada una por una con técnicas artesanales, dedicación y mucho cariño.</p></div>
+          <div class="group bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-7 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/20 text-center"><div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 boty-transition"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3 class="font-serif text-xl text-white mb-2">Materiales de calidad</h3><p class="text-sm text-white/70">Seleccionamos cuidadosamente cada material para garantizar durabilidad y belleza en cada detalle.</p></div>
+          <div class="group bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-7 boty-shadow hover:shadow-xl boty-transition hover:-translate-y-1 border border-white/20 text-center"><div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 boty-transition"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div><h3 class="font-serif text-xl text-white mb-2">Diseños únicos</h3><p class="text-sm text-white/70">Creaciones exclusivas que no encontrarás en ningún otro lugar, pensadas para cada cliente.</p></div>
         </div>
-        <div class="text-center mt-16"><div class="inline-block bg-white/10 rounded-full px-6 py-3 backdrop-blur-sm"><p class="text-sm font-medium text-white">✨ Lo hecho a mano tiene alma ✨</p></div><div class="mt-6"><a href="shop.html" class="inline-flex items-center gap-2 text-white hover:text-white/80 boty-transition font-medium border-b border-white/30 pb-1"><span>Ver todas las piezas</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div>
+        <div class="text-center mt-12"><div class="inline-block bg-white/10 rounded-full px-5 py-2 backdrop-blur-sm"><p class="text-xs font-medium text-white">✨ Lo hecho a mano tiene alma ✨</p></div><div class="mt-5"><a href="shop.html" class="inline-flex items-center gap-1.5 text-white hover:text-white/80 boty-transition font-medium text-sm border-b border-white/30 pb-1"><span>Ver todas las piezas</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-card pt-20 pb-10 relative overflow-hidden">
+  <footer class="bg-card pt-16 pb-8 relative overflow-hidden">
     <div class="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none z-0">
-      <span id="footerWatermark" class="font-serif text-[200px] sm:text-[200px] md:text-[400px] lg:text-[400px] xl:text-[400px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span>
+      <span id="footerWatermark" class="font-serif text-[180px] sm:text-[220px] md:text-[300px] lg:text-[350px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span>
     </div>
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-14">
         <div class="col-span-2 md:col-span-1">
-          <h2 id="footerSiteName" class="font-serif text-3xl text-foreground mb-4">Destellos by Yoki</h2>
-          <p class="text-sm text-muted-foreground leading-relaxed mb-6">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p>
-          <div class="flex gap-4" id="footerSocialLinks"></div>
+          <h2 id="footerSiteName" class="font-serif text-2xl text-foreground mb-3">Destellos by Yoki</h2>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-5">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p>
+          <div class="flex gap-3" id="footerSocialLinks"></div>
         </div>
-        <div><h3 class="font-medium text-foreground mb-4">Tienda</h3><ul class="space-y-3"><li><a href="shop.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Todos los productos</a></li></ul></div>
-        <div><h3 class="font-medium text-foreground mb-4">Sobre nosotros</h3><ul class="space-y-3"><li><a href="about.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Sobre Nosotros</a></li></ul></div>
-        <div><h3 class="font-medium text-foreground mb-4">Ayuda</h3><ul class="space-y-3"><li><a href="#" id="footerContactLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Contáctanos</a></li><li><a href="#" id="footerWhatsappLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">WhatsApp</a></li><li><a href="#" id="footerInstagramLinkFooter" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Instagram</a></li></ul></div>
+        <div><h3 class="font-medium text-foreground mb-3">Tienda</h3><ul class="space-y-2"><li><a href="shop.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Todos los productos</a></li></ul></div>
+        <div><h3 class="font-medium text-foreground mb-3">Sobre nosotros</h3><ul class="space-y-2"><li><a href="about.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Sobre Nosotros</a></li></ul></div>
+        <div><h3 class="font-medium text-foreground mb-3">Ayuda</h3><ul class="space-y-2"><li><a href="#" id="footerContactLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Contáctanos</a></li><li><a href="#" id="footerWhatsappLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">WhatsApp</a></li><li><a href="#" id="footerInstagramLinkFooter" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Instagram</a></li></ul></div>
       </div>
-      <div class="pt-10 border-t border-border/50"><div class="flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-sm text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p></div></div>
+      <div class="pt-8 border-t border-border/50"><div class="flex flex-col md:flex-row items-center justify-between gap-3"><p class="text-xs text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p></div></div>
     </div>
   </footer>
 
@@ -910,13 +937,13 @@
     function updateSocialLinks() {
       const container = document.getElementById('socialLinksContainer');
       if (container) {
-        container.innerHTML = `<a href="${socialSettings.instagram}" target="_blank" class="group flex items-center gap-3 bg-white px-8 py-4 rounded-full boty-shadow hover:shadow-lg boty-transition"><svg class="w-6 h-6 text-primary group-hover:scale-110 boty-transition" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16.5" cy="7.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="text-foreground font-medium">Instagram</span></a><a href="${socialSettings.facebook}" target="_blank" class="group flex items-center gap-3 bg-white px-8 py-4 rounded-full boty-shadow hover:shadow-lg boty-transition"><svg class="w-6 h-6 text-primary group-hover:scale-110 boty-transition" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="text-foreground font-medium">Facebook</span></a><a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" class="group flex items-center gap-3 bg-white px-8 py-4 rounded-full boty-shadow hover:shadow-lg boty-transition"><svg class="w-6 h-6 text-primary group-hover:scale-110 boty-transition" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="text-foreground font-medium">WhatsApp</span></a>`;
+        container.innerHTML = `<a href="${socialSettings.instagram}" target="_blank" class="group flex items-center gap-2 bg-white px-7 py-3 rounded-full boty-shadow hover:shadow-lg boty-transition"><svg class="w-5 h-5 text-primary group-hover:scale-110 boty-transition" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16.5" cy="7.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="text-foreground font-medium">Instagram</span></a><a href="${socialSettings.facebook}" target="_blank" class="group flex items-center gap-2 bg-white px-7 py-3 rounded-full boty-shadow hover:shadow-lg boty-transition"><svg class="w-5 h-5 text-primary group-hover:scale-110 boty-transition" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="text-foreground font-medium">Facebook</span></a><a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" class="group flex items-center gap-2 bg-white px-7 py-3 rounded-full boty-shadow hover:shadow-lg boty-transition"><svg class="w-5 h-5 text-primary group-hover:scale-110 boty-transition" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="text-foreground font-medium">WhatsApp</span></a>`;
       }
       const igLink = document.getElementById('instagramLink');
       if (igLink) igLink.href = socialSettings.instagram;
       const footerSocial = document.getElementById('footerSocialLinks');
       if (footerSocial) {
-        footerSocial.innerHTML = `<a href="${socialSettings.instagram}" target="_blank" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a><a href="${socialSettings.facebook}" target="_blank" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg></a><a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>`;
+        footerSocial.innerHTML = `<a href="${socialSettings.instagram}" target="_blank" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a><a href="${socialSettings.facebook}" target="_blank" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg></a><a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>`;
       }
       const footerContact = document.getElementById('footerContactLink');
       const footerWhats = document.getElementById('footerWhatsappLink');
@@ -1010,10 +1037,10 @@
       const totalItems = items.reduce((s, i) => s + (i.quantity || 1), 0);
       if (itemsText) itemsText.textContent = `${totalItems} artículo${totalItems !== 1 ? 's' : ''}`;
       if (items.length === 0) { if (empty) empty.classList.remove('hidden'); if (list) list.classList.add('hidden'); if (footer) footer.classList.add('hidden'); } 
-      else { if (empty) empty.classList.add('hidden'); if (list) list.classList.remove('hidden'); if (footer) footer.classList.remove('hidden'); if (list) { list.innerHTML = items.map(item => `<div class="cart-item flex gap-4 py-4 border-b border-border/50"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-sm text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-xs text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-3"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) - 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">-</button><span class="px-3 py-1 text-sm">${item.quantity || 1}</span><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) + 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">+</button></div><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join(''); } const subtotal = items.reduce((s, i) => s + (i.price * (i.quantity || 1)), 0); if (subtotalSpan) subtotalSpan.textContent = `$${subtotal}`; if (totalSpan) totalSpan.textContent = `$${subtotal}`; }
+      else { if (empty) empty.classList.add('hidden'); if (list) list.classList.remove('hidden'); if (footer) footer.classList.remove('hidden'); if (list) { list.innerHTML = items.map(item => `<div class="cart-item flex gap-3 py-3 border-b border-border/50"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-sm text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-xs text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-2"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) - 1})" class="px-2 py-1 text-foreground/70 hover:text-foreground boty-transition text-xs">-</button><span class="px-2 py-1 text-xs">${item.quantity || 1}</span><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) + 1})" class="px-2 py-1 text-foreground/70 hover:text-foreground boty-transition text-xs">+</button></div><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join(''); } const subtotal = items.reduce((s, i) => s + (i.price * (i.quantity || 1)), 0); if (subtotalSpan) subtotalSpan.textContent = `$${subtotal}`; if (totalSpan) totalSpan.textContent = `$${subtotal}`; }
     }
     function goToProduct(id) { window.location.href = `product.html?id=${id}`; }
-    async function updateCheckoutModal() { const items = await getCartItems(); if (items.length === 0) { closeCheckoutModal(); return; } const productsList = document.getElementById('checkoutProductsList'); productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground">${item.name}</h4><p class="text-xs text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-sm text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join(''); const total = items.reduce((s, i) => s + (i.price * (i.quantity || 1)), 0); document.getElementById('checkoutTotal').textContent = `$${total}`; }
+    async function updateCheckoutModal() { const items = await getCartItems(); if (items.length === 0) { closeCheckoutModal(); return; } const productsList = document.getElementById('checkoutProductsList'); productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground">${item.name}</h4><p class="text-xs text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-sm text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join(''); const total = items.reduce((s, i) => s + (i.price * (i.quantity || 1)), 0); document.getElementById('checkoutTotal').textContent = `$${total}`; }
     async function openCheckoutModal() { const items = await getCartItems(); if (items.length === 0) { showNotification('❌ Carrito vacío', 'error'); return; } await updateCheckoutModal(); document.getElementById('checkoutNotas').value = ''; closeCart(); document.getElementById('checkoutModal').classList.add('active'); }
     function closeCheckoutModal() { document.getElementById('checkoutModal').classList.remove('active'); }
     async function sendCheckoutWhatsApp() {

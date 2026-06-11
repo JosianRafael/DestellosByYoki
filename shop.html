@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title id="pageTitle">Catálogo - Destellos by Yoki | Bisutería Artesanal</title>
   <meta name="description" content="Explora nuestro catálogo de bisutería, decoración y crochet hecho a mano.">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,10 +39,21 @@
     }
   </script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { background-color: #F7F4EF; color: #2C2C2C; font-family: 'DM Sans', sans-serif; }
+    /* ESCALADO MODERADO - Igual que la página principal */
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 93.75%; /* 15px en lugar de 16px */
+    }
+    body { 
+      background-color: #F7F4EF; 
+      color: #2C2C2C; 
+      font-family: 'DM Sans', sans-serif; 
+    }
     .font-serif { font-family: 'Playfair Display', serif; }
-    .boty-shadow { box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px; }
+    
+    .boty-shadow { 
+      box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px; 
+    }
     .boty-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     @keyframes scale-fade-in { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
     .animate-scale-fade-in { animation: scale-fade-in 0.6s ease-out; }
@@ -50,7 +61,7 @@
     .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
     
     /* Estilos para el carrito */
-    .cart-item-image { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+    .cart-item-image { width: 75px; height: 75px; object-fit: cover; border-radius: 8px; }
     .cart-item { transition: background-color 0.3s ease; }
     .cart-item:hover { background-color: rgba(0,0,0,0.02); }
 
@@ -78,8 +89,8 @@
 
     .modal-content {
       background-color: #F7F4EF;
-      border-radius: 24px;
-      max-width: 600px;
+      border-radius: 22px;
+      max-width: 560px;
       width: 90%;
       max-height: 90vh;
       overflow-y: auto;
@@ -91,12 +102,11 @@
       transform: translateY(0);
     }
 
-    /* Estilos para el campo de notas */
     .notas-textarea {
       resize: none;
       border: 1px solid #D8CFC4;
       border-radius: 12px;
-      padding: 12px;
+      padding: 10px;
       width: 100%;
       font-family: 'DM Sans', sans-serif;
       transition: border-color 0.3s ease;
@@ -107,12 +117,11 @@
       border-color: #4F5B3A;
     }
 
-    /* Estilos para la lista de productos en el modal */
     .modal-product-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
+      gap: 10px;
+      padding: 10px;
       border-bottom: 1px solid #D8CFC4;
       transition: background-color 0.3s ease;
     }
@@ -126,8 +135,8 @@
     }
 
     .modal-product-image {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -150,7 +159,6 @@
       color: #8B4A45;
     }
 
-    /* Estilos para el modal de login */
     .login-modal {
       position: fixed;
       top: 0;
@@ -174,10 +182,10 @@
 
     .login-modal-content {
       background-color: #F7F4EF;
-      border-radius: 24px;
+      border-radius: 22px;
       max-width: 400px;
       width: 90%;
-      padding: 2rem;
+      padding: 1.8rem;
       transform: translateY(-20px);
       transition: all 0.3s ease;
     }
@@ -189,9 +197,9 @@
     .admin-badge {
       background-color: #4F5B3A;
       color: #F7F4EF;
-      padding: 4px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 11px;
       margin-left: 8px;
     }
 
@@ -211,8 +219,8 @@
     .admin-button {
       background-color: #4F5B3A;
       color: #F7F4EF;
-      width: 50px;
-      height: 50px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -234,11 +242,10 @@
       background-color: #4F5B3A;
     }
 
-    /* Estilos para el selector de imágenes */
     .image-upload-area {
       border: 2px dashed #D8CFC4;
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -257,19 +264,18 @@
 
     .image-preview {
       max-width: 100%;
-      max-height: 150px;
+      max-height: 130px;
       object-fit: contain;
       border-radius: 8px;
       margin-top: 10px;
     }
 
-    /* Spinner de carga */
     .spinner {
       border: 3px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
       border-top: 3px solid #4F5B3A;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       animation: spin 1s linear infinite;
       margin: 0 auto;
     }
@@ -302,8 +308,8 @@
 
     .loading-content {
       background-color: #F7F4EF;
-      padding: 2rem;
-      border-radius: 24px;
+      padding: 1.8rem;
+      border-radius: 22px;
       text-align: center;
       max-width: 300px;
       width: 90%;
@@ -315,13 +321,12 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    /* Estilos para filtros */
     .filter-input {
       width: 100%;
-      padding: 8px 12px;
+      padding: 7px 12px;
       border: 1px solid #D8CFC4;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
       transition: all 0.3s ease;
       background-color: #F7F4EF;
@@ -333,20 +338,19 @@
     }
 
     .admin-filter-container {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    /* Estilos para botones admin en cards */
     .admin-card-buttons {
       display: flex;
-      gap: 8px;
-      margin-top: 8px;
+      gap: 6px;
+      margin-top: 6px;
     }
     .admin-card-btn {
       flex: 1;
-      padding: 6px;
+      padding: 5px;
       border-radius: 999px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       text-align: center;
       cursor: pointer;
@@ -371,15 +375,15 @@
       background-color: #4F5B3A;
       color: white;
       border: none;
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 11px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 5px;
       transition: all 0.3s ease;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .filter-toggle-btn:hover {
@@ -393,39 +397,39 @@
     }
     .filters-collapsible.open {
       max-height: 500px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
     .filters-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
       align-items: flex-end;
       background-color: #EDE6DC;
-      padding: 20px;
-      border-radius: 24px;
+      padding: 15px;
+      border-radius: 20px;
     }
     .filter-group {
       flex: 1;
-      min-width: 180px;
+      min-width: 160px;
     }
     .filter-label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #4F5B3A;
     }
     .price-range {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
     .price-input {
       flex: 1;
-      padding: 8px 12px;
+      padding: 7px 10px;
       border: 1px solid #D8CFC4;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
       background-color: #F7F4EF;
     }
@@ -434,10 +438,10 @@
     }
     .filter-select {
       width: 100%;
-      padding: 8px 12px;
+      padding: 7px 10px;
       border: 1px solid #D8CFC4;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
       background-color: #F7F4EF;
       cursor: pointer;
@@ -446,9 +450,9 @@
       background-color: #D8CFC4;
       color: #2C2C2C;
       border: none;
-      padding: 8px 20px;
+      padding: 7px 18px;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -456,7 +460,31 @@
       background-color: #c0b5a8;
     }
     .search-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+    
+    /* Reducir espaciados generales */
+    .max-w-7xl {
+      max-width: 76rem !important;
+    }
+    
+    main.pt-28 {
+      padding-top: 5rem !important;
+    }
+    
+    .text-center.mb-12 {
+      margin-bottom: 2rem !important;
+    }
+    
+    .gap-4 {
+      gap: 0.8rem !important;
+    }
+    
+    /* MODIFICACIÓN RESPONSIVE: Una sola columna en móviles */
+    @media (max-width: 767px) {
+      .product-grid-mobile {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+      }
     }
   </style>
 </head>
@@ -471,46 +499,46 @@
 
   <!-- Modal para Checkout (Carrito Completo) -->
   <div id="checkoutModal" class="modal-overlay">
-    <div class="modal-content p-8">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Finalizar Pedido</h3>
         <button onclick="window.closeCheckoutModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
 
-      <div class="mb-6">
-        <h4 class="font-medium text-foreground mb-3">Productos en tu carrito:</h4>
-        <div id="checkoutProductsList" class="max-h-60 overflow-y-auto border border-border rounded-lg mb-4">
+      <div class="mb-5">
+        <h4 class="font-medium text-foreground mb-2 text-sm">Productos en tu carrito:</h4>
+        <div id="checkoutProductsList" class="max-h-52 overflow-y-auto border border-border rounded-lg mb-3">
           <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
 
-        <div class="bg-card p-4 rounded-lg mb-4">
+        <div class="bg-card p-3 rounded-lg mb-3">
           <div class="flex justify-between items-center">
-            <span class="font-medium text-foreground">Total del pedido:</span>
-            <span id="checkoutTotal" class="font-medium text-foreground text-lg">$0</span>
+            <span class="font-medium text-foreground text-sm">Total del pedido:</span>
+            <span id="checkoutTotal" class="font-medium text-foreground text-base">$0</span>
           </div>
         </div>
 
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Notas adicionales para el pedido (opcional)</label>
-          <textarea id="checkoutNotas" class="notas-textarea" rows="3" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Notas adicionales para el pedido (opcional)</label>
+          <textarea id="checkoutNotas" class="notas-textarea text-sm" rows="2" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
         </div>
 
-        <div class="bg-primary/5 rounded-lg p-4">
-          <p class="text-sm text-foreground/70">
-            <span class="font-medium text-primary">📱 WhatsApp:</span> Te contactaremos al número que uses para enviar el mensaje.
+        <div class="bg-primary/5 rounded-lg p-3">
+          <p class="text-xs text-foreground/70">
+            <span class="font-medium text-primary text-xs">📱 WhatsApp:</span> Te contactaremos al número que uses para enviar el mensaje.
           </p>
         </div>
       </div>
 
-      <div class="flex gap-4">
-        <button onclick="window.sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">
+      <div class="flex gap-3">
+        <button onclick="window.sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">
           Enviar Pedido por WhatsApp
         </button>
-        <button onclick="window.closeCheckoutModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">
+        <button onclick="window.closeCheckoutModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">
           Cancelar
         </button>
       </div>
@@ -520,30 +548,30 @@
   <!-- Modal de Login para Administrador -->
   <div id="loginModal" class="login-modal">
     <div class="login-modal-content">
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Acceso</h3>
         <button onclick="window.closeLoginModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
 
-      <div class="mb-4">
-        <label class="text-sm font-medium text-foreground mb-2 block">Email</label>
-        <input type="email" id="loginEmail" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
+      <div class="mb-3">
+        <label class="text-xs font-medium text-foreground mb-1 block">Email</label>
+        <input type="email" id="loginEmail" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
       </div>
 
-      <div class="mb-6">
-        <label class="text-sm font-medium text-foreground mb-2 block">Contraseña</label>
-        <input type="password" id="loginPassword" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
+      <div class="mb-5">
+        <label class="text-xs font-medium text-foreground mb-1 block">Contraseña</label>
+        <input type="password" id="loginPassword" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
       </div>
 
-      <div class="flex gap-4">
-        <button onclick="window.handleLogin()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">
+      <div class="flex gap-3">
+        <button onclick="window.handleLogin()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">
           Iniciar Sesión
         </button>
-        <button onclick="window.closeLoginModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">
+        <button onclick="window.closeLoginModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">
           Cancelar
         </button>
       </div>
@@ -552,60 +580,60 @@
 
   <!-- Modal de Configuración (Redes Sociales + Nombre del sitio) -->
   <div id="settingsModal" class="modal-overlay">
-    <div class="modal-content p-8 max-w-lg">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-6 max-w-lg">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Configuración</h3>
         <button onclick="closeSettingsModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
 
-      <div class="mb-6">
-        <h4 class="font-medium text-foreground mb-4 pb-2 border-b border-border">Información del sitio</h4>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Nombre del sitio (logo y footer)</label>
-          <input type="text" id="settingsSiteName" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
-          <p class="text-xs text-muted-foreground mt-1">Este nombre aparecerá en el logo del header y en el footer.</p>
+      <div class="mb-5">
+        <h4 class="font-medium text-foreground mb-3 pb-2 border-b border-border text-sm">Información del sitio</h4>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Nombre del sitio (logo y footer)</label>
+          <input type="text" id="settingsSiteName" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
+          <p class="text-[0.6rem] text-muted-foreground mt-1">Este nombre aparecerá en el logo del header y en el footer.</p>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Título SEO (title de la pestaña)</label>
-          <input type="text" id="settingsSiteTitle" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
-          <p class="text-xs text-muted-foreground mt-1">Aparecerá en la pestaña del navegador.</p>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Título SEO (title de la pestaña)</label>
+          <input type="text" id="settingsSiteTitle" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
+          <p class="text-[0.6rem] text-muted-foreground mt-1">Aparecerá en la pestaña del navegador.</p>
         </div>
         
-        <h4 class="font-medium text-foreground mb-4 mt-6 pb-2 border-b border-border">Redes Sociales</h4>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Número de WhatsApp</label>
+        <h4 class="font-medium text-foreground mb-3 mt-5 pb-2 border-b border-border text-sm">Redes Sociales</h4>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Número de WhatsApp</label>
           <div class="flex gap-2">
-            <input type="text" id="settingsWhatsapp" class="flex-1 px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
+            <input type="text" id="settingsWhatsapp" class="flex-1 px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
           </div>
-          <p class="text-xs text-muted-foreground mt-1">Solo el número, sin espacios ni símbolos</p>
+          <p class="text-[0.6rem] text-muted-foreground mt-1">Solo el número, sin espacios ni símbolos</p>
         </div>
 
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">URL de Instagram</label>
-          <input type="text" id="settingsInstagram" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">URL de Instagram</label>
+          <input type="text" id="settingsInstagram" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
         </div>
 
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">URL de Facebook</label>
-          <input type="text" id="settingsFacebook" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">URL de Facebook</label>
+          <input type="text" id="settingsFacebook" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
         </div>
 
-        <div class="bg-primary/5 rounded-lg p-4">
-          <p class="text-sm text-foreground/70">
-            <span class="font-medium text-primary">ℹ️ Información:</span> Estos datos se usarán en todos los enlaces de redes sociales y en el nombre visible de la página.
+        <div class="bg-primary/5 rounded-lg p-3">
+          <p class="text-xs text-foreground/70">
+            <span class="font-medium text-primary text-xs">ℹ️ Información:</span> Estos datos se usarán en todos los enlaces de redes sociales y en el nombre visible de la página.
           </p>
         </div>
       </div>
 
-      <div class="flex gap-4">
-        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">
+      <div class="flex gap-3">
+        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">
           Guardar Configuración
         </button>
-        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">
+        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">
           Cancelar
         </button>
       </div>
@@ -615,49 +643,49 @@
   <!-- Header -->
   <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
     <nav class="max-w-7xl mx-auto px-6 lg:px-8 backdrop-blur-md rounded-lg py-0 my-0 animate-scale-fade-in bg-white/40 border border-white/30" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;">
-      <div class="flex items-center justify-between h-[68px]">
-        <button type="button" class="lg:hidden p-2 text-foreground/80 hover:text-foreground boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
-          <svg class="w-5 h-5" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-center justify-between h-[62px]">
+        <button type="button" class="lg:hidden p-1.5 text-foreground/80 hover:text-foreground boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
+          <svg class="w-4 h-4" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
-          <svg class="w-5 h-5 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
 
-        <div class="hidden lg:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-7">
           <a href="shop.html" class="text-sm tracking-wide text-foreground boty-transition font-medium">Catálogo</a>
           <a href="about.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
           <a href="#" id="footerContactLink" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
         </div>
 
         <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
-          <h1 id="siteLogo" class="font-serif text-3xl tracking-wider text-foreground"> </h1>
+          <h1 id="siteLogo" class="font-serif text-2xl tracking-wider text-foreground"> </h1>
         </a>
 
-        <div class="flex items-center gap-4">
-          <button type="button" class="p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Search">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-3">
+          <button type="button" class="p-1.5 text-foreground/70 hover:text-foreground boty-transition" aria-label="Search">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35"/>
             </svg>
           </button>
-          <a href="javascript:void(0)" onclick="window.openLoginModal()" class="hidden sm:block p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Account">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <a href="javascript:void(0)" onclick="window.openLoginModal()" class="hidden sm:block p-1.5 text-foreground/70 hover:text-foreground boty-transition" aria-label="Account">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
           </a>
-          <button type="button" id="cartBtn" class="relative p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Cart">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button type="button" id="cartBtn" class="relative p-1.5 text-foreground/70 hover:text-foreground boty-transition" aria-label="Cart">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
-            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-4 h-4 bg-primary text-primary-foreground text-[10px] flex items-center justify-center rounded-full">0</span>
+            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-3.5 h-3.5 bg-primary text-primary-foreground text-[9px] flex items-center justify-center rounded-full">0</span>
           </button>
         </div>
       </div>
 
       <div id="mobileMenu" class="lg:hidden overflow-hidden boty-transition max-h-0">
-        <div class="flex flex-col gap-4 pt-4 pb-6 border-t border-border/50">
+        <div class="flex flex-col gap-3 pt-3 pb-5 border-t border-border/50">
           <a href="shop.html" class="text-sm tracking-wide text-foreground boty-transition">Catálogo</a>
           <a href="about.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
           <a href="#" id="footerContactLinkMobile" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
@@ -670,34 +698,34 @@
   <!-- Cart Drawer -->
   <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/50" id="cartOverlay"></div>
-    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[440px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
+    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[420px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
       <div class="flex flex-col h-full">
-        <div class="border-b border-border/50 p-6 py-4 flex items-center justify-between">
+        <div class="border-b border-border/50 p-5 py-3.5 flex items-center justify-between">
           <div>
-            <h2 class="font-serif text-2xl">Carrito</h2>
-            <p class="text-sm text-muted-foreground" id="cartItemsText">0 artículos</p>
+            <h2 class="font-serif text-xl">Carrito</h2>
+            <p class="text-xs text-muted-foreground" id="cartItemsText">0 artículos</p>
           </div>
-          <button type="button" id="closeCartBtn" class="p-2 text-foreground/70 hover:text-foreground">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button type="button" id="closeCartBtn" class="p-1.5 text-foreground/70 hover:text-foreground">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
         
-        <div class="flex-1 overflow-y-auto p-6" id="cartItems">
+        <div class="flex-1 overflow-y-auto p-5" id="cartItems">
           <div class="flex flex-col items-center justify-center h-full text-center" id="emptyCart">
-            <svg class="w-12 h-12 text-muted-foreground/50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-10 h-10 text-muted-foreground/50 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
-            <p class="text-muted-foreground">Tu carrito está vacío</p>
-            <button type="button" onclick="window.closeCart()" class="mt-4 text-primary hover:underline text-sm">Seguir comprando</button>
+            <p class="text-sm text-muted-foreground">Tu carrito está vacío</p>
+            <button type="button" onclick="window.closeCart()" class="mt-3 text-primary hover:underline text-xs">Seguir comprando</button>
           </div>
-          <div id="cartItemsList" class="space-y-6 hidden"></div>
+          <div id="cartItemsList" class="space-y-5 hidden"></div>
         </div>
 
-        <div id="cartFooter" class="hidden border-t border-border/50 p-6 space-y-4">
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between text-muted-foreground">
+        <div id="cartFooter" class="hidden border-t border-border/50 p-5 space-y-3">
+          <div class="space-y-1 text-sm">
+            <div class="flex justify-between text-xs text-muted-foreground">
               <span>Subtotal</span>
               <span id="subtotal">$0</span>
             </div>
@@ -706,10 +734,10 @@
               <span id="total">$0</span>
             </div>
           </div>
-          <button type="button" onclick="window.openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-4 rounded-full font-medium hover:bg-primary/90 boty-transition">
+          <button type="button" onclick="window.openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">
             Pagar
           </button>
-          <button type="button" onclick="window.closeCart()" class="w-full border border-border text-foreground py-4 rounded-full font-medium hover:bg-muted boty-transition">
+          <button type="button" onclick="window.closeCart()" class="w-full border border-border text-foreground py-3 rounded-full font-medium text-sm hover:bg-muted boty-transition">
             Seguir comprando
           </button>
         </div>
@@ -720,61 +748,61 @@
   <!-- Panel de Administración (solo visible para admin) -->
   <div id="adminPanel" class="admin-controls">
     <div class="admin-button" onclick="window.openAdminModal()" title="Administrar productos">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
       </svg>
     </div>
     <div class="admin-button settings-button" onclick="openSettingsModal()" title="Configuración">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
       </svg>
     </div>
     <div class="admin-button logout-button" onclick="window.handleLogout()" title="Cerrar sesión">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4 4m4-4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
       </svg>
     </div>
   </div>
 
   <!-- Modal de Administración (CRUD de productos) -->
   <div id="adminModal" class="modal-overlay">
-    <div class="modal-content p-8 max-w-4xl">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-6 max-w-4xl">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Administrar Productos</h3>
         <button onclick="window.closeAdminModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
 
       <!-- Formulario para agregar/editar producto -->
-      <div class="bg-card p-6 rounded-lg mb-6">
-        <h4 class="font-medium text-foreground mb-4" id="formTitle">Agregar Nuevo Producto</h4>
-        <div class="grid grid-cols-2 gap-4">
+      <div class="bg-card p-5 rounded-lg mb-5">
+        <h4 class="font-medium text-foreground mb-3 text-sm" id="formTitle">Agregar Nuevo Producto</h4>
+        <div class="grid grid-cols-2 gap-3">
           <input type="hidden" id="editProductId">
           <div class="col-span-2">
-            <label class="text-sm font-medium text-foreground mb-2 block">Imagen del Producto</label>
+            <label class="text-xs font-medium text-foreground mb-1 block">Imagen del Producto</label>
             <div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageInput').click()" ondragover="window.handleDragOver(event)" ondragleave="window.handleDragLeave(event)" ondrop="window.handleDrop(event)">
               <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="window.handleImageSelect(event)">
               <div id="uploadPlaceholder">
-                <svg class="w-12 h-12 mx-auto text-foreground/40 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-10 h-10 mx-auto text-foreground/40 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                 </svg>
-                <p class="text-sm text-foreground/60">Haz clic o arrastra una imagen aquí</p>
-                <p class="text-xs text-foreground/40 mt-1">JPG, PNG, GIF hasta 5MB</p>
+                <p class="text-xs text-foreground/60">Haz clic o arrastra una imagen aquí</p>
+                <p class="text-[0.6rem] text-foreground/40 mt-1">JPG, PNG, GIF hasta 5MB</p>
               </div>
               <img id="imagePreview" class="image-preview hidden" src="" alt="Vista previa">
             </div>
           </div>
           <div>
-            <label class="text-sm font-medium text-foreground mb-2 block">Nombre del Producto</label>
-            <input type="text" id="productName" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+            <label class="text-xs font-medium text-foreground mb-1 block">Nombre del Producto</label>
+            <input type="text" id="productName" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary">
           </div>
           <div>
-            <label class="text-sm font-medium text-foreground mb-2 block">Categoría</label>
-            <select id="productCategory" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+            <label class="text-xs font-medium text-foreground mb-1 block">Categoría</label>
+            <select id="productCategory" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary">
               <option value="Collares">Collares</option>
               <option value="Aretes">Aretes</option>
               <option value="Pulseras">Pulseras</option>
@@ -786,27 +814,27 @@
             </select>
           </div>
           <div>
-            <label class="text-sm font-medium text-foreground mb-2 block">Tagline</label>
-            <input type="text" id="productTagline" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+            <label class="text-xs font-medium text-foreground mb-1 block">Tagline</label>
+            <input type="text" id="productTagline" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary">
           </div>
           <div>
-            <label class="text-sm font-medium text-foreground mb-2 block">Precio Venta</label>
-            <input type="number" id="productPrice" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+            <label class="text-xs font-medium text-foreground mb-1 block">Precio Venta</label>
+            <input type="number" id="productPrice" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary">
           </div>
           <div>
-            <label class="text-sm font-medium text-foreground mb-2 block">Precio Original (opcional)</label>
-            <input type="number" id="productOriginalPrice" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+            <label class="text-xs font-medium text-foreground mb-1 block">Precio Original (opcional)</label>
+            <input type="number" id="productOriginalPrice" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary">
           </div>
           <div class="col-span-2">
-            <label class="text-sm font-medium text-foreground mb-2 block">Descripción</label>
-            <textarea id="productDescription" rows="3" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary"></textarea>
+            <label class="text-xs font-medium text-foreground mb-1 block">Descripción</label>
+            <textarea id="productDescription" rows="2" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary"></textarea>
           </div>
         </div>
-        <div class="flex gap-4 mt-4">
-          <button onclick="window.saveProduct()" class="bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium hover:bg-primary/90 boty-transition">
+        <div class="flex gap-3 mt-3">
+          <button onclick="window.saveProduct()" class="bg-primary text-primary-foreground px-5 py-1.5 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">
             Guardar Producto
           </button>
-          <button onclick="window.clearForm()" class="border border-border text-foreground px-6 py-2 rounded-full font-medium hover:bg-muted boty-transition">
+          <button onclick="window.clearForm()" class="border border-border text-foreground px-5 py-1.5 rounded-full font-medium text-sm hover:bg-muted boty-transition">
             Limpiar Formulario
           </button>
         </div>
@@ -814,40 +842,40 @@
 
       <!-- Lista de productos para administrar con filtro -->
       <div>
-        <h4 class="font-medium text-foreground mb-4">Productos Existentes</h4>
+        <h4 class="font-medium text-foreground mb-3 text-sm">Productos Existentes</h4>
         <div class="admin-filter-container">
           <input type="text" id="adminProductFilter" class="filter-input" placeholder="🔍 Filtrar por nombre de producto..." onkeyup="window.filterAdminProducts()">
         </div>
-        <div id="adminProductsList" class="max-h-96 overflow-y-auto border border-border rounded-lg">
+        <div id="adminProductsList" class="max-h-80 overflow-y-auto border border-border rounded-lg">
           <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
       </div>
     </div>
   </div>
 
-  <main class="pt-28 pb-20">
+  <main class="pt-20 pb-16">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <!-- Header -->
-      <div class="text-center mb-12">
-        <span class="text-sm tracking-[0.3em] uppercase text-primary mb-4 block">Nuestra Colección</span>
-        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">Catálogo de Productos</h1>
-        <p class="text-lg text-muted-foreground max-w-md mx-auto">Piezas únicas hechas a mano con amor y dedicación</p>
+      <div class="text-center mb-10">
+        <span class="text-xs tracking-[0.3em] uppercase text-primary mb-3 block">Nuestra Colección</span>
+        <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-3">Catálogo de Productos</h1>
+        <p class="text-sm text-muted-foreground max-w-md mx-auto">Piezas únicas hechas a mano con amor y dedicación</p>
       </div>
 
       <!-- Buscador siempre visible -->
       <div class="search-group max-w-md mx-auto">
         <div class="relative">
-          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
-          <input type="text" id="catalogProductFilter" class="filter-input pl-12 pr-4" placeholder="Buscar productos por nombre..." onkeyup="window.applyFilters()">
+          <input type="text" id="catalogProductFilter" class="filter-input pl-9 pr-3" placeholder="Buscar productos por nombre..." onkeyup="window.applyFilters()">
         </div>
       </div>
 
       <!-- Botón para mostrar/ocultar filtros avanzados -->
-      <div class="text-center mt-4">
+      <div class="text-center mt-3">
         <button id="toggleFiltersBtn" class="filter-toggle-btn">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
           </svg>
           Mostrar filtros avanzados
@@ -875,7 +903,7 @@
             <label class="filter-label">Rango de precio</label>
             <div class="price-range">
               <input type="number" id="minPrice" class="price-input" placeholder="Mín $0" value="0" oninput="window.applyFilters()">
-              <span>-</span>
+              <span class="text-xs">-</span>
               <input type="number" id="maxPrice" class="price-input" placeholder="Máx $1500" value="1500" oninput="window.applyFilters()">
             </div>
           </div>
@@ -884,57 +912,57 @@
       </div>
 
       <!-- Product Count -->
-      <div class="flex justify-end mb-6 pb-2 border-b border-border/50">
-        <span class="text-sm text-muted-foreground" id="productCount">0 productos</span>
+      <div class="flex justify-end mb-5 pb-2 border-b border-border/50">
+        <span class="text-xs text-muted-foreground" id="productCount">0 productos</span>
       </div>
 
       <!-- Product Grid -->
-      <div id="productsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"></div>
+      <div id="productsGrid" class="grid grid-cols-1 lg:grid-cols-4 gap-4 product-grid-mobile"></div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-card pt-20 pb-10 relative overflow-hidden">
+  <footer class="bg-card pt-16 pb-8 relative overflow-hidden">
     <div class="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none z-0">
-      <span id="footerWatermark" class="font-serif text-[200px] sm:text-[200px] md:text-[400px] lg:text-[400px] xl:text-[400px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span>
+      <span id="footerWatermark" class="font-serif text-[180px] sm:text-[220px] md:text-[300px] lg:text-[350px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span>
     </div>
     
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
         <div class="col-span-2 md:col-span-1">
-          <h2 id="footerSiteName" class="font-serif text-3xl text-foreground mb-4">Destellos by Yoki</h2>
-          <p class="text-sm text-muted-foreground leading-relaxed mb-6">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p>
-          <div class="flex gap-4" id="footerSocialLinks">
+          <h2 id="footerSiteName" class="font-serif text-2xl text-foreground mb-3">Destellos by Yoki</h2>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-5">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p>
+          <div class="flex gap-3" id="footerSocialLinks">
             <!-- Los enlaces de redes sociales se cargarán dinámicamente -->
           </div>
         </div>
 
         <div>
-          <h3 class="font-medium text-foreground mb-4">Tienda</h3>
-          <ul class="space-y-3">
+          <h3 class="font-medium text-foreground mb-3 text-sm">Tienda</h3>
+          <ul class="space-y-2">
             <li><a href="shop.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Todos los productos</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="font-medium text-foreground mb-4">Sobre nosotros</h3>
-          <ul class="space-y-3">
+          <h3 class="font-medium text-foreground mb-3 text-sm">Sobre nosotros</h3>
+          <ul class="space-y-2">
             <li><a href="about.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Sobre Nosotros</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="font-medium text-foreground mb-4">Ayuda</h3>
-          <ul class="space-y-3">
+          <h3 class="font-medium text-foreground mb-3 text-sm">Ayuda</h3>
+          <ul class="space-y-2">
             <li><a href="#" id="footerWhatsappLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">WhatsApp</a></li> 
             <li><a href="#" id="footerInstagramLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Instagram</a></li> 
           </ul>
         </div>
       </div>
 
-      <div class="pt-10 border-t border-border/50">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p class="text-sm text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p>
+      <div class="pt-8 border-t border-border/50">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+          <p class="text-xs text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p>
           <div class="flex gap-6"></div>
         </div>
       </div>
@@ -979,7 +1007,6 @@
       document.getElementById('loadingOverlay').classList.remove('active');
     }
 
-    // Función para mostrar notificaciones con SweetAlert
     function showNotification(message, type = 'success') {
       const icon = type === 'success' ? 'success' : type === 'error' ? 'error' : 'info';
       
@@ -998,7 +1025,6 @@
       });
     }
 
-    // Función para confirmar acciones
     async function showConfirm(message) {
       const result = await Swal.fire({
         title: '¿Estás seguro?',
@@ -1017,7 +1043,6 @@
       return result.isConfirmed;
     }
 
-    // Actualizar nombre del sitio en toda la página
     function updateSiteName() {
       const logo = document.getElementById('siteLogo');
       const footerName = document.getElementById('footerSiteName');
@@ -1032,7 +1057,6 @@
       if (titleTag && socialSettings.siteTitle) titleTag.textContent = socialSettings.siteTitle;
     }
 
-    // Cargar configuración de redes sociales y nombre del sitio
     async function loadSocialSettings() {
       try {
         const { data, error } = await supabaseClient
@@ -1061,19 +1085,18 @@
       }
     }
 
-    // Actualizar todos los enlaces de redes sociales
     function updateSocialLinks() {
       const footerSocialLinks = document.getElementById('footerSocialLinks');
       if (footerSocialLinks) {
         footerSocialLinks.innerHTML = `
-          <a href="${socialSettings.instagram}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Instagram">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="${socialSettings.instagram}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Instagram">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
           </a>
-          <a href="${socialSettings.facebook}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Facebook">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="${socialSettings.facebook}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Facebook">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
           </a>
-          <a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="WhatsApp">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="WhatsApp">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
           </a>
         `;
       }
@@ -1089,7 +1112,6 @@
       if (footerInstagramLink) footerInstagramLink.href = socialSettings.instagram;
     }
 
-    // Funciones para el modal de configuración
     function openSettingsModal() {
       document.getElementById('settingsWhatsapp').value = socialSettings.whatsapp;
       document.getElementById('settingsInstagram').value = socialSettings.instagram;
@@ -1164,7 +1186,6 @@
       }
     }
 
-    // Inicializar IndexedDB
     function initDB() {
       return new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION);
@@ -1192,7 +1213,6 @@
       });
     }
 
-    // Verificar sesión al cargar
     async function checkSession() {
       showLoading('Verificando sesión...');
       try {
@@ -1217,7 +1237,6 @@
       }
     }
 
-    // Obtener productos desde Supabase
     async function fetchProducts() {
       showLoading('Cargando productos...');
       try {
@@ -1238,7 +1257,6 @@
       }
     }
 
-    // Aplicar filtros combinados (búsqueda, categoría, precio)
     function applyFilters() {
       const searchTerm = document.getElementById('catalogProductFilter').value.toLowerCase().trim();
       const category = document.getElementById('categoryFilter').value;
@@ -1260,7 +1278,6 @@
       updateProductCount();
     }
 
-    // Resetear todos los filtros
     function resetFilters() {
       document.getElementById('catalogProductFilter').value = '';
       document.getElementById('categoryFilter').value = 'all';
@@ -1269,7 +1286,6 @@
       applyFilters();
     }
 
-    // Filtrar productos en el panel de administración
     function filterAdminProducts() {
       const searchTerm = document.getElementById('adminProductFilter').value.toLowerCase().trim();
       if (searchTerm === '') {
@@ -1280,13 +1296,12 @@
       }
     }
 
-    // Renderizar productos en la página principal
     function renderProducts() {
       const grid = document.getElementById('productsGrid');
       const isAdmin = !!currentUser;
       
       if (filteredProducts.length === 0) {
-        grid.innerHTML = '<div class="col-span-4 text-center py-12 text-muted-foreground">No hay productos disponibles</div>';
+        grid.innerHTML = '<div class="col-span-1 text-center py-10 text-muted-foreground text-sm">No hay productos disponibles</div>';
         return;
       }
 
@@ -1297,14 +1312,14 @@
               <img src="${product.image}" alt="${product.name}" class="product-image w-full h-full object-cover">
             </div>
             <div class="p-3">
-              <span class="text-[10px] tracking-wider uppercase text-primary">${product.tagline || ''}</span>
+              <span class="text-[9px] tracking-wider uppercase text-primary">${product.tagline || ''}</span>
               <h3 class="font-serif text-sm text-foreground mt-1 mb-1 line-clamp-1">${product.name}</h3>
               <p class="text-xs text-muted-foreground mb-2 line-clamp-2">${product.description || ''}</p>
               <div class="flex items-center gap-2 mb-2">
-                <span class="text-base font-medium text-foreground">$${product.price}</span>
+                <span class="text-sm font-medium text-foreground">$${product.price}</span>
                 ${product.original_price ? `<span class="text-xs text-muted-foreground line-through">$${product.original_price}</span>` : ''}
               </div>
-              <button class="w-full bg-primary text-primary-foreground py-2 rounded-full text-xs font-medium hover:bg-primary/90 boty-transition" onclick="event.stopPropagation(); addToCart(${product.id})">
+              <button class="w-full bg-primary text-primary-foreground py-1.5 rounded-full text-xs font-medium hover:bg-primary/90 boty-transition" onclick="event.stopPropagation(); addToCart(${product.id})">
                 Agregar
               </button>
               ${isAdmin ? `
@@ -1363,31 +1378,30 @@
       const list = document.getElementById('adminProductsList');
       if (!list) return;
       if (productsToRender.length === 0) {
-        list.innerHTML = '<div class="p-4 text-center text-muted-foreground">No hay productos</div>';
+        list.innerHTML = '<div class="p-4 text-center text-muted-foreground text-sm">No hay productos</div>';
         return;
       }
       list.innerHTML = productsToRender.map(product => `
-        <div class="flex items-center justify-between p-4 border-b border-border">
+        <div class="flex items-center justify-between p-3 border-b border-border">
           <div class="flex items-center gap-3">
-            <img src="${product.image}" alt="${product.name}" class="w-12 h-12 object-cover rounded">
+            <img src="${product.image}" alt="${product.name}" class="w-10 h-10 object-cover rounded">
             <div>
-              <h4 class="font-medium text-foreground">${product.name}</h4>
+              <h4 class="font-medium text-foreground text-sm">${product.name}</h4>
               <p class="text-xs text-muted-foreground">$${product.price} - ${product.category}</p>
             </div>
           </div>
-          <div class="flex gap-2">
-            <button onclick="editProduct(${product.id})" class="p-2 text-foreground/70 hover:text-primary boty-transition">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <div class="flex gap-1.5">
+            <button onclick="editProduct(${product.id})" class="p-1.5 text-foreground/70 hover:text-primary boty-transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
-            <button onclick="deleteProduct(${product.id})" class="p-2 text-foreground/70 hover:text-destructive boty-transition">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            <button onclick="deleteProduct(${product.id})" class="p-1.5 text-foreground/70 hover:text-destructive boty-transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </button>
           </div>
         </div>
       `).join('');
     }
 
-    // Funciones de autenticación
     function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
     function closeLoginModal() { document.getElementById('loginModal').classList.remove('active'); document.getElementById('loginEmail').value = ''; document.getElementById('loginPassword').value = ''; }
 
@@ -1421,7 +1435,6 @@
       renderProducts();
     }
 
-    // Funciones para manejo de imágenes
     function handleDragOver(event) { event.preventDefault(); event.stopPropagation(); document.getElementById('imageUploadArea').classList.add('dragover'); }
     function handleDragLeave(event) { event.preventDefault(); event.stopPropagation(); document.getElementById('imageUploadArea').classList.remove('dragover'); }
     function handleDrop(event) { event.preventDefault(); event.stopPropagation(); document.getElementById('imageUploadArea').classList.remove('dragover'); const files = event.dataTransfer.files; if (files.length > 0) handleImageFile(files[0]); }
@@ -1435,7 +1448,6 @@
       reader.readAsDataURL(file);
     }
 
-    // Funciones del panel de administración
     function openAdminModal() { document.getElementById('adminModal').classList.add('active'); document.getElementById('adminProductFilter').value = ''; renderAdminProducts(products); }
     function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); clearForm(); }
     function clearForm() {
@@ -1550,13 +1562,13 @@
       const totalItems = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
       if (cartItemsText) cartItemsText.textContent = `${totalItems} artículo${totalItems !== 1 ? 's' : ''}`;
       if (items.length === 0) { if (emptyCart) emptyCart.classList.remove('hidden'); if (cartItemsList) cartItemsList.classList.add('hidden'); if (cartFooter) cartFooter.classList.add('hidden'); } 
-      else { if (emptyCart) emptyCart.classList.add('hidden'); if (cartItemsList) cartItemsList.classList.remove('hidden'); if (cartFooter) cartFooter.classList.remove('hidden'); if (cartItemsList) { cartItemsList.innerHTML = items.map(item => `<div class="cart-item flex gap-4 py-4 border-b border-border/50" data-product-id="${item.id}"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-sm text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-xs text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-3"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) - 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">-</button><span class="px-3 py-1 text-sm">${item.quantity || 1}</span><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) + 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">+</button></div><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join(''); } const subtotal = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0); if (subtotalSpan) subtotalSpan.textContent = `$${subtotal}`; if (totalSpan) totalSpan.textContent = `$${subtotal}`; }
+      else { if (emptyCart) emptyCart.classList.add('hidden'); if (cartItemsList) cartItemsList.classList.remove('hidden'); if (cartFooter) cartFooter.classList.remove('hidden'); if (cartItemsList) { cartItemsList.innerHTML = items.map(item => `<div class="cart-item flex gap-3 py-3 border-b border-border/50" data-product-id="${item.id}"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-xs text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-[0.65rem] text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-2"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) - 1})" class="px-2 py-0.5 text-foreground/70 hover:text-foreground boty-transition text-xs">-</button><span class="px-2 py-0.5 text-xs">${item.quantity || 1}</span><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) + 1})" class="px-2 py-0.5 text-foreground/70 hover:text-foreground boty-transition text-xs">+</button></div><span class="font-medium text-foreground text-sm">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join(''); } const subtotal = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0); if (subtotalSpan) subtotalSpan.textContent = `$${subtotal}`; if (totalSpan) totalSpan.textContent = `$${subtotal}`; }
     }
     async function updateCheckoutModal() {
       const items = await getCartItems();
       if (items.length === 0) { closeCheckoutModal(); showNotification('🛒 Tu carrito está vacío', 'info'); return; }
       const productsList = document.getElementById('checkoutProductsList');
-      productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground">${item.name}</h4><p class="text-xs text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-sm text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-2" title="Eliminar producto"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join('');
+      productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground text-sm">${item.name}</h4><p class="text-[0.65rem] text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-xs text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground text-sm">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-1.5" title="Eliminar producto"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join('');
       const total = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
       document.getElementById('checkoutTotal').textContent = `$${total}`;
     }
@@ -1569,7 +1581,7 @@
       const notas = document.getElementById('checkoutNotas').value.trim();
       const total = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
       let mensaje = `*** *PEDIDO NUEVO - ${socialSettings.siteName}* ***\n\n--- PRODUCTOS ---\n`;
-      items.forEach((item, index) => { mensaje += `\n${index + 1}. ${item.name}\n   > TagLine: ${item.tagline || 'No especificada'}\n   > Cantidad: ${item.quantity || 1}\n   > Subtotal: $${item.price * (item.quantity || 1)}\n`; });
+      items.forEach((item, index) => { mensaje += `\n${index + 1}. ${item.name}\n   > Cantidad: ${item.quantity || 1}\n   > Subtotal: $${item.price * (item.quantity || 1)}\n`; });
       mensaje += `\n=== TOTAL DEL PEDIDO: $${total} ===\n`;
       if (notas) mensaje += `\n--- NOTAS ADICIONALES ---\n${notas}\n`;
       mensaje += `\n--------------------------------\n🕐 *¡En breve te contactaremos para confirmar!*\n\n*¡Gracias por elegir ${socialSettings.siteName}. Cada detalle está hecho con amor para ti!*`;
@@ -1586,7 +1598,7 @@
     const mobileMenu = document.getElementById('mobileMenu');
     const menuIcon = document.getElementById('menuIcon');
     const closeIcon = document.getElementById('closeIcon');
-    if (mobileMenuBtn) { mobileMenuBtn.addEventListener('click', function() { if (mobileMenu.classList.contains('max-h-0')) { mobileMenu.classList.remove('max-h-0'); mobileMenu.classList.add('max-h-64', 'py-2'); menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } else { mobileMenu.classList.add('max-h-0'); mobileMenu.classList.remove('max-h-64', 'py-2'); menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } }); }
+    if (mobileMenuBtn) { mobileMenuBtn.addEventListener('click', function() { if (mobileMenu.classList.contains('max-h-0')) { mobileMenu.classList.remove('max-h-0'); mobileMenu.classList.add('max-h-56', 'py-2'); menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } else { mobileMenu.classList.add('max-h-0'); mobileMenu.classList.remove('max-h-56', 'py-2'); menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } }); }
     const cartBtn = document.getElementById('cartBtn');
     const cartDrawer = document.getElementById('cartDrawer');
     const cartPanel = document.getElementById('cartPanel');
@@ -1607,10 +1619,10 @@
         filtersOpen = !filtersOpen;
         if (filtersOpen) {
           filtersCollapsible.classList.add('open');
-          toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> Ocultar filtros avanzados';
+          toggleBtn.innerHTML = '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> Ocultar filtros avanzados';
         } else {
           filtersCollapsible.classList.remove('open');
-          toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg> Mostrar filtros avanzados';
+          toggleBtn.innerHTML = '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg> Mostrar filtros avanzados';
         }
       });
     }
