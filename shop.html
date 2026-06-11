@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Catálogo - Destellos by Yoki | Bisutería Artesanal</title>
+  <meta name="description" content="Explora nuestro catálogo de bisutería, decoración y crochet hecho a mano.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            background: '#F7F4EF',
+            foreground: '#2C2C2C',
+            card: '#EDE6DC',
+            primary: '#4F5B3A',
+            'primary-foreground': '#F7F4EF',
+            secondary: '#D8CFC4',
+            muted: '#EDE6DC',
+            'muted-foreground': '#6B6560',
+            accent: '#B8ADA3',
+            border: '#D8CFC4',
+            destructive: '#A65D57',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #F7F4EF; color: #2C2C2C; font-family: 'DM Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .boty-shadow { box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px; }
+    .boty-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    @keyframes scale-fade-in { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
+    .animate-scale-fade-in { animation: scale-fade-in 0.6s ease-out; }
+    .product-card:hover .product-image { transform: scale(1.05); }
+    .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    
+    /* Estilos para el carrito */
+    .cart-item-image { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+    .cart-item { transition: background-color 0.3s ease; }
+    .cart-item:hover { background-color: rgba(0,0,0,0.02); }
+
+    /* Estilos para el modal de checkout */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: #F7F4EF;
+      border-radius: 24px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    /* Estilos para el campo de notas */
+    .notas-textarea {
+      resize: none;
+      border: 1px solid #D8CFC4;
+      border-radius: 12px;
+      padding: 12px;
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+
+    .notas-textarea:focus {
+      outline: none;
+      border-color: #4F5B3A;
+    }
+
+    /* Estilos para la lista de productos en el modal */
+    .modal-product-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 1px solid #D8CFC4;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-product-item:hover {
+      background-color: rgba(0,0,0,0.02);
+    }
+
+    .modal-product-item:last-child {
+      border-bottom: none;
+    }
+
+    .modal-product-image {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .modal-product-info {
+      flex: 1;
+    }
+
+    .modal-product-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-remove-btn {
+      color: #A65D57;
+      transition: color 0.3s ease;
+    }
+
+    .modal-remove-btn:hover {
+      color: #8B4A45;
+    }
+
+    /* Estilos para el modal de login */
+    .login-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .login-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .login-modal-content {
+      background-color: #F7F4EF;
+      border-radius: 24px;
+      max-width: 400px;
+      width: 90%;
+      padding: 2rem;
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+    }
+
+    .login-modal.active .login-modal-content {
+      transform: translateY(0);
+    }
+
+    .admin-badge {
+      background-color: #4F5B3A;
+      color: #F7F4EF;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    .admin-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: none;
+    }
+
+    .admin-controls.visible {
+      display: flex;
+      gap: 10px;
+    }
+
+    .admin-button {
+      background-color: #4F5B3A;
+      color: #F7F4EF;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .admin-button:hover {
+      transform: scale(1.1);
+    }
+
+    .logout-button {
+      background-color: #A65D57;
+    }
+
+    .settings-button {
+      background-color: #4F5B3A;
+    }
+
+    /* Estilos para el selector de imágenes */
+    .image-upload-area {
+      border: 2px dashed #D8CFC4;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #F7F4EF;
+    }
+
+    .image-upload-area:hover {
+      border-color: #4F5B3A;
+      background-color: #EDE6DC;
+    }
+
+    .image-upload-area.dragover {
+      border-color: #4F5B3A;
+      background-color: #D8CFC4;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Spinner de carga */
+    .spinner {
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 3px solid #4F5B3A;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loading-content {
+      background-color: #F7F4EF;
+      padding: 2rem;
+      border-radius: 24px;
+      text-align: center;
+      max-width: 300px;
+      width: 90%;
+    }
+
+    .loading-text {
+      margin-top: 1rem;
+      color: #2C2C2C;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Estilos para filtros */
+    .filter-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #D8CFC4;
+      border-radius: 999px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+      background-color: #F7F4EF;
+    }
+
+    .filter-input:focus {
+      border-color: #4F5B3A;
+      box-shadow: 0 0 0 2px rgba(79, 91, 58, 0.1);
+    }
+
+    .admin-filter-container {
+      margin-bottom: 16px;
+    }
+
+    /* Estilos para botones admin en cards */
+    .admin-card-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .admin-card-btn {
+      flex: 1;
+      padding: 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .admin-card-btn.edit {
+      background-color: #4F5B3A;
+      color: white;
+    }
+    .admin-card-btn.edit:hover {
+      background-color: #3d4630;
+    }
+    .admin-card-btn.delete {
+      background-color: #A65D57;
+      color: white;
+    }
+    .admin-card-btn.delete:hover {
+      background-color: #8B4A45;
+    }
+
+    .filter-toggle-btn {
+      background-color: #4F5B3A;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .filter-toggle-btn:hover {
+      background-color: #3d4630;
+    }
+    .filters-collapsible {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      margin-bottom: 0;
+    }
+    .filters-collapsible.open {
+      max-height: 500px;
+      margin-bottom: 30px;
+    }
+    .filters-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
+      background-color: #EDE6DC;
+      padding: 20px;
+      border-radius: 24px;
+    }
+    .filter-group {
+      flex: 1;
+      min-width: 180px;
+    }
+    .filter-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #4F5B3A;
+    }
+    .price-range {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .price-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #D8CFC4;
+      border-radius: 999px;
+      font-size: 14px;
+      outline: none;
+      background-color: #F7F4EF;
+    }
+    .price-input:focus {
+      border-color: #4F5B3A;
+    }
+    .filter-select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #D8CFC4;
+      border-radius: 999px;
+      font-size: 14px;
+      outline: none;
+      background-color: #F7F4EF;
+      cursor: pointer;
+    }
+    .reset-filters {
+      background-color: #D8CFC4;
+      color: #2C2C2C;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .reset-filters:hover {
+      background-color: #c0b5a8;
+    }
+    .search-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen">
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p id="loadingMessage" class="loading-text">Cargando...</p>
+    </div>
+  </div>
+
+  <!-- Modal para Checkout (Carrito Completo) -->
+  <div id="checkoutModal" class="modal-overlay">
+    <div class="modal-content p-8">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="font-serif text-2xl text-foreground">Finalizar Pedido</h3>
+        <button onclick="window.closeCheckoutModal()" class="text-foreground/60 hover:text-foreground boty-transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="font-medium text-foreground mb-3">Productos en tu carrito:</h4>
+        <div id="checkoutProductsList" class="max-h-60 overflow-y-auto border border-border rounded-lg mb-4">
+          <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+
+        <div class="bg-card p-4 rounded-lg mb-4">
+          <div class="flex justify-between items-center">
+            <span class="font-medium text-foreground">Total del pedido:</span>
+            <span id="checkoutTotal" class="font-medium text-foreground text-lg">$0</span>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-sm font-medium text-foreground mb-2 block">Notas adicionales para el pedido (opcional)</label>
+          <textarea id="checkoutNotas" class="notas-textarea" rows="3" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
+        </div>
+
+        <div class="bg-primary/5 rounded-lg p-4">
+          <p class="text-sm text-foreground/70">
+            <span class="font-medium text-primary">📱 WhatsApp:</span> Te contactaremos al número que uses para enviar el mensaje.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <button onclick="window.sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">
+          Enviar Pedido por WhatsApp
+        </button>
+        <button onclick="window.closeCheckoutModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Login para Administrador -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-modal-content">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="font-serif text-2xl text-foreground">Acceso</h3>
+        <button onclick="window.closeLoginModal()" class="text-foreground/60 hover:text-foreground boty-transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mb-4">
+        <label class="text-sm font-medium text-foreground mb-2 block">Email</label>
+        <input type="email" id="loginEmail" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
+      </div>
+
+      <div class="mb-6">
+        <label class="text-sm font-medium text-foreground mb-2 block">Contraseña</label>
+        <input type="password" id="loginPassword" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
+      </div>
+
+      <div class="flex gap-4">
+        <button onclick="window.handleLogin()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">
+          Iniciar Sesión
+        </button>
+        <button onclick="window.closeLoginModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Configuración (Redes Sociales + Nombre del sitio) -->
+  <div id="settingsModal" class="modal-overlay">
+    <div class="modal-content p-8 max-w-lg">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="font-serif text-2xl text-foreground">Configuración</h3>
+        <button onclick="closeSettingsModal()" class="text-foreground/60 hover:text-foreground boty-transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="font-medium text-foreground mb-4 pb-2 border-b border-border">Información del sitio</h4>
+        <div class="mb-4">
+          <label class="text-sm font-medium text-foreground mb-2 block">Nombre del sitio (logo y footer)</label>
+          <input type="text" id="settingsSiteName" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
+          <p class="text-xs text-muted-foreground mt-1">Este nombre aparecerá en el logo del header y en el footer.</p>
+        </div>
+        <div class="mb-4">
+          <label class="text-sm font-medium text-foreground mb-2 block">Título SEO (title de la pestaña)</label>
+          <input type="text" id="settingsSiteTitle" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
+          <p class="text-xs text-muted-foreground mt-1">Aparecerá en la pestaña del navegador.</p>
+        </div>
+        
+        <h4 class="font-medium text-foreground mb-4 mt-6 pb-2 border-b border-border">Redes Sociales</h4>
+        <div class="mb-4">
+          <label class="text-sm font-medium text-foreground mb-2 block">Número de WhatsApp</label>
+          <div class="flex gap-2">
+            <input type="text" id="settingsWhatsapp" class="flex-1 px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
+          </div>
+          <p class="text-xs text-muted-foreground mt-1">Solo el número, sin espacios ni símbolos</p>
+        </div>
+
+        <div class="mb-4">
+          <label class="text-sm font-medium text-foreground mb-2 block">URL de Instagram</label>
+          <input type="text" id="settingsInstagram" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
+        </div>
+
+        <div class="mb-4">
+          <label class="text-sm font-medium text-foreground mb-2 block">URL de Facebook</label>
+          <input type="text" id="settingsFacebook" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
+        </div>
+
+        <div class="bg-primary/5 rounded-lg p-4">
+          <p class="text-sm text-foreground/70">
+            <span class="font-medium text-primary">ℹ️ Información:</span> Estos datos se usarán en todos los enlaces de redes sociales y en el nombre visible de la página.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">
+          Guardar Configuración
+        </button>
+        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 backdrop-blur-md rounded-lg py-0 my-0 animate-scale-fade-in bg-white/40 border border-white/30" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;">
+      <div class="flex items-center justify-between h-[68px]">
+        <button type="button" class="lg:hidden p-2 text-foreground/80 hover:text-foreground boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
+          <svg class="w-5 h-5" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg class="w-5 h-5 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="shop.html" class="text-sm tracking-wide text-foreground boty-transition font-medium">Catálogo</a>
+          <a href="about.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
+          <a href="#" id="footerContactLink" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
+        </div>
+
+        <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
+          <h1 id="siteLogo" class="font-serif text-3xl tracking-wider text-foreground"> </h1>
+        </a>
+
+        <div class="flex items-center gap-4">
+          <button type="button" class="p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Search">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35"/>
+            </svg>
+          </button>
+          <a href="javascript:void(0)" onclick="window.openLoginModal()" class="hidden sm:block p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Account">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </a>
+          <button type="button" id="cartBtn" class="relative p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Cart">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-4 h-4 bg-primary text-primary-foreground text-[10px] flex items-center justify-center rounded-full">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="lg:hidden overflow-hidden boty-transition max-h-0">
+        <div class="flex flex-col gap-4 pt-4 pb-6 border-t border-border/50">
+          <a href="shop.html" class="text-sm tracking-wide text-foreground boty-transition">Catálogo</a>
+          <a href="about.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
+          <a href="#" id="footerContactLinkMobile" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
+          <a href="javascript:void(0)" onclick="window.openLoginModal()" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Cuenta</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Cart Drawer -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50" id="cartOverlay"></div>
+    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[440px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
+      <div class="flex flex-col h-full">
+        <div class="border-b border-border/50 p-6 py-4 flex items-center justify-between">
+          <div>
+            <h2 class="font-serif text-2xl">Carrito</h2>
+            <p class="text-sm text-muted-foreground" id="cartItemsText">0 artículos</p>
+          </div>
+          <button type="button" id="closeCartBtn" class="p-2 text-foreground/70 hover:text-foreground">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto p-6" id="cartItems">
+          <div class="flex flex-col items-center justify-center h-full text-center" id="emptyCart">
+            <svg class="w-12 h-12 text-muted-foreground/50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <p class="text-muted-foreground">Tu carrito está vacío</p>
+            <button type="button" onclick="window.closeCart()" class="mt-4 text-primary hover:underline text-sm">Seguir comprando</button>
+          </div>
+          <div id="cartItemsList" class="space-y-6 hidden"></div>
+        </div>
+
+        <div id="cartFooter" class="hidden border-t border-border/50 p-6 space-y-4">
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between text-muted-foreground">
+              <span>Subtotal</span>
+              <span id="subtotal">$0</span>
+            </div>
+            <div class="flex justify-between text-base font-medium text-foreground pt-2 border-t border-border/50">
+              <span>Total</span>
+              <span id="total">$0</span>
+            </div>
+          </div>
+          <button type="button" onclick="window.openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-4 rounded-full font-medium hover:bg-primary/90 boty-transition">
+            Pagar
+          </button>
+          <button type="button" onclick="window.closeCart()" class="w-full border border-border text-foreground py-4 rounded-full font-medium hover:bg-muted boty-transition">
+            Seguir comprando
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de Administración (solo visible para admin) -->
+  <div id="adminPanel" class="admin-controls">
+    <div class="admin-button" onclick="window.openAdminModal()" title="Administrar productos">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+      </svg>
+    </div>
+    <div class="admin-button settings-button" onclick="openSettingsModal()" title="Configuración">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    </div>
+    <div class="admin-button logout-button" onclick="window.handleLogout()" title="Cerrar sesión">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Modal de Administración (CRUD de productos) -->
+  <div id="adminModal" class="modal-overlay">
+    <div class="modal-content p-8 max-w-4xl">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="font-serif text-2xl text-foreground">Administrar Productos</h3>
+        <button onclick="window.closeAdminModal()" class="text-foreground/60 hover:text-foreground boty-transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Formulario para agregar/editar producto -->
+      <div class="bg-card p-6 rounded-lg mb-6">
+        <h4 class="font-medium text-foreground mb-4" id="formTitle">Agregar Nuevo Producto</h4>
+        <div class="grid grid-cols-2 gap-4">
+          <input type="hidden" id="editProductId">
+          <div class="col-span-2">
+            <label class="text-sm font-medium text-foreground mb-2 block">Imagen del Producto</label>
+            <div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageInput').click()" ondragover="window.handleDragOver(event)" ondragleave="window.handleDragLeave(event)" ondrop="window.handleDrop(event)">
+              <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="window.handleImageSelect(event)">
+              <div id="uploadPlaceholder">
+                <svg class="w-12 h-12 mx-auto text-foreground/40 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <p class="text-sm text-foreground/60">Haz clic o arrastra una imagen aquí</p>
+                <p class="text-xs text-foreground/40 mt-1">JPG, PNG, GIF hasta 5MB</p>
+              </div>
+              <img id="imagePreview" class="image-preview hidden" src="" alt="Vista previa">
+            </div>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-foreground mb-2 block">Nombre del Producto</label>
+            <input type="text" id="productName" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+          </div>
+          <div>
+            <label class="text-sm font-medium text-foreground mb-2 block">Categoría</label>
+            <select id="productCategory" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+              <option value="Collares">Collares</option>
+              <option value="Aretes">Aretes</option>
+              <option value="Pulseras">Pulseras</option>
+              <option value="Regalos">Regalos</option>
+              <option value="Otros">Otros</option>
+              <option value="bisuteria">Bisutería</option>
+              <option value="decoracion">Decoración</option>
+              <option value="crochet">Crochet</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-foreground mb-2 block">Tagline</label>
+            <input type="text" id="productTagline" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+          </div>
+          <div>
+            <label class="text-sm font-medium text-foreground mb-2 block">Precio Venta</label>
+            <input type="number" id="productPrice" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+          </div>
+          <div>
+            <label class="text-sm font-medium text-foreground mb-2 block">Precio Original (opcional)</label>
+            <input type="number" id="productOriginalPrice" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary">
+          </div>
+          <div class="col-span-2">
+            <label class="text-sm font-medium text-foreground mb-2 block">Descripción</label>
+            <textarea id="productDescription" rows="3" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary"></textarea>
+          </div>
+        </div>
+        <div class="flex gap-4 mt-4">
+          <button onclick="window.saveProduct()" class="bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium hover:bg-primary/90 boty-transition">
+            Guardar Producto
+          </button>
+          <button onclick="window.clearForm()" class="border border-border text-foreground px-6 py-2 rounded-full font-medium hover:bg-muted boty-transition">
+            Limpiar Formulario
+          </button>
+        </div>
+      </div>
+
+      <!-- Lista de productos para administrar con filtro -->
+      <div>
+        <h4 class="font-medium text-foreground mb-4">Productos Existentes</h4>
+        <div class="admin-filter-container">
+          <input type="text" id="adminProductFilter" class="filter-input" placeholder="🔍 Filtrar por nombre de producto..." onkeyup="window.filterAdminProducts()">
+        </div>
+        <div id="adminProductsList" class="max-h-96 overflow-y-auto border border-border rounded-lg">
+          <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="pt-28 pb-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <span class="text-sm tracking-[0.3em] uppercase text-primary mb-4 block">Nuestra Colección</span>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">Catálogo de Productos</h1>
+        <p class="text-lg text-muted-foreground max-w-md mx-auto">Piezas únicas hechas a mano con amor y dedicación</p>
+      </div>
+
+      <!-- Buscador siempre visible -->
+      <div class="search-group max-w-md mx-auto">
+        <div class="relative">
+          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="catalogProductFilter" class="filter-input pl-12 pr-4" placeholder="Buscar productos por nombre..." onkeyup="window.applyFilters()">
+        </div>
+      </div>
+
+      <!-- Botón para mostrar/ocultar filtros avanzados -->
+      <div class="text-center mt-4">
+        <button id="toggleFiltersBtn" class="filter-toggle-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+          </svg>
+          Mostrar filtros avanzados
+        </button>
+      </div>
+
+      <!-- Filtros colapsables (Categoría y Precio) -->
+      <div id="filtersCollapsible" class="filters-collapsible">
+        <div class="filters-row">
+          <div class="filter-group">
+            <label class="filter-label">Categoría</label>
+            <select id="categoryFilter" class="filter-select" onchange="window.applyFilters()">
+              <option value="all">Todas las categorías</option>
+              <option value="Collares">Collares</option>
+              <option value="Aretes">Aretes</option>
+              <option value="Pulseras">Pulseras</option>
+              <option value="Regalos">Regalos</option>
+              <option value="Otros">Otros</option>
+              <option value="bisuteria">Bisutería</option>
+              <option value="decoracion">Decoración</option>
+              <option value="crochet">Crochet</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Rango de precio</label>
+            <div class="price-range">
+              <input type="number" id="minPrice" class="price-input" placeholder="Mín $0" value="0" oninput="window.applyFilters()">
+              <span>-</span>
+              <input type="number" id="maxPrice" class="price-input" placeholder="Máx $1500" value="1500" oninput="window.applyFilters()">
+            </div>
+          </div>
+          <button class="reset-filters" onclick="window.resetFilters()">Limpiar filtros</button>
+        </div>
+      </div>
+
+      <!-- Product Count -->
+      <div class="flex justify-end mb-6 pb-2 border-b border-border/50">
+        <span class="text-sm text-muted-foreground" id="productCount">0 productos</span>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="productsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-card pt-20 pb-10 relative overflow-hidden">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none z-0">
+      <span id="footerWatermark" class="font-serif text-[200px] sm:text-[200px] md:text-[400px] lg:text-[400px] xl:text-[400px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+        <div class="col-span-2 md:col-span-1">
+          <h2 id="footerSiteName" class="font-serif text-3xl text-foreground mb-4">Destellos by Yoki</h2>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-6">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p>
+          <div class="flex gap-4" id="footerSocialLinks">
+            <!-- Los enlaces de redes sociales se cargarán dinámicamente -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-foreground mb-4">Tienda</h3>
+          <ul class="space-y-3">
+            <li><a href="shop.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Todos los productos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-foreground mb-4">Sobre nosotros</h3>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Sobre Nosotros</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-medium text-foreground mb-4">Ayuda</h3>
+          <ul class="space-y-3">
+            <li><a href="#" id="footerWhatsappLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">WhatsApp</a></li> 
+            <li><a href="#" id="footerInstagramLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Instagram</a></li> 
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-10 border-t border-border/50">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-sm text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p>
+          <div class="flex gap-6"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Año actual en el footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Configuración de Supabase
+    const SUPABASE_URL = 'https://brbgmfexvjmottavgfxi.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyYmdtZmV4dmptb3R0YXZnZnhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4NjE3MzYsImV4cCI6MjA4OTQzNzczNn0.UI4shcgb4qFJKmUym4nb2JU4JCSuHVShSWGMVcTUl8c';
+
+    // Inicializar Supabase
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Variables globales
+    let products = [];
+    let filteredProducts = [];
+    let currentUser = null;
+    let db = null;
+    let selectedImageFile = null;
+    let socialSettings = {
+      whatsapp: '8292656817',
+      instagram: 'https://www.instagram.com/destelloslv?igsh=NWZldTR0bWVmNHpj',
+      facebook: 'https://www.facebook.com/share/1DHUESYuBN/?mibextid=wwXIfr',
+      siteName: 'Destellos by Yoki',
+      siteTitle: 'Catálogo - Destellos by Yoki | Bisutería Artesanal'
+    };
+    const DB_NAME = 'DestellosLVCart';
+    const DB_VERSION = 1;
+    const STORE_NAME = 'cart';
+
+    // Funciones para el spinner de carga
+    function showLoading(message = 'Cargando...') {
+      document.getElementById('loadingMessage').textContent = message;
+      document.getElementById('loadingOverlay').classList.add('active');
+    }
+
+    function hideLoading() {
+      document.getElementById('loadingOverlay').classList.remove('active');
+    }
+
+    // Función para mostrar notificaciones con SweetAlert
+    function showNotification(message, type = 'success') {
+      const icon = type === 'success' ? 'success' : type === 'error' ? 'error' : 'info';
+      
+      Swal.fire({
+        title: message,
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        icon: icon,
+        background: '#F7F4EF',
+        customClass: {
+          popup: 'boty-shadow rounded-lg'
+        }
+      });
+    }
+
+    // Función para confirmar acciones
+    async function showConfirm(message) {
+      const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: message,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#4F5B3A',
+        cancelButtonColor: '#A65D57',
+        confirmButtonText: 'Sí, continuar',
+        cancelButtonText: 'Cancelar',
+        background: '#F7F4EF',
+        customClass: {
+          popup: 'boty-shadow rounded-lg'
+        }
+      });
+      return result.isConfirmed;
+    }
+
+    // Actualizar nombre del sitio en toda la página
+    function updateSiteName() {
+      const logo = document.getElementById('siteLogo');
+      const footerName = document.getElementById('footerSiteName');
+      const footerCopyright = document.getElementById('footerCopyrightName');
+      const watermark = document.getElementById('footerWatermark');
+      const titleTag = document.getElementById('pageTitle');
+      
+      if (logo) logo.textContent = socialSettings.siteName;
+      if (footerName) footerName.textContent = socialSettings.siteName;
+      if (footerCopyright) footerCopyright.textContent = socialSettings.siteName;
+      if (watermark) watermark.textContent = socialSettings.siteName;
+      if (titleTag && socialSettings.siteTitle) titleTag.textContent = socialSettings.siteTitle;
+    }
+
+    // Cargar configuración de redes sociales y nombre del sitio
+    async function loadSocialSettings() {
+      try {
+        const { data, error } = await supabaseClient
+          .from('settings')
+          .select('*')
+          .single();
+
+        if (error && error.code !== 'PGRST116') {
+          console.error('Error al cargar configuración:', error);
+        }
+
+        if (data) {
+          socialSettings = {
+            whatsapp: data.whatsapp || '8292656817',
+            instagram: data.instagram || 'https://www.instagram.com/destelloslv?igsh=NWZldTR0bWVmNHpj',
+            facebook: data.facebook || 'https://www.facebook.com/share/1DHUESYuBN/?mibextid=wwXIfr',
+            siteName: data.site_name || 'Destellos by Yoki',
+            siteTitle: data.site_title || 'Catálogo - Destellos by Yoki | Bisutería Artesanal'
+          };
+        }
+
+        updateSiteName();
+        updateSocialLinks();
+      } catch (error) {
+        console.error('Error al cargar configuración:', error);
+      }
+    }
+
+    // Actualizar todos los enlaces de redes sociales
+    function updateSocialLinks() {
+      const footerSocialLinks = document.getElementById('footerSocialLinks');
+      if (footerSocialLinks) {
+        footerSocialLinks.innerHTML = `
+          <a href="${socialSettings.instagram}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Instagram">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
+          </a>
+          <a href="${socialSettings.facebook}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Facebook">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </a>
+          <a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="WhatsApp">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </a>
+        `;
+      }
+
+      const footerContactLink = document.getElementById('footerContactLink');
+      const footerContactLinkMobile = document.getElementById('footerContactLinkMobile');
+      const footerWhatsappLink = document.getElementById('footerWhatsappLink');
+      const footerInstagramLink = document.getElementById('footerInstagramLink');
+
+      if (footerContactLink) footerContactLink.href = `https://wa.me/${socialSettings.whatsapp}`;
+      if (footerContactLinkMobile) footerContactLinkMobile.href = `https://wa.me/${socialSettings.whatsapp}`;
+      if (footerWhatsappLink) footerWhatsappLink.href = `https://wa.me/${socialSettings.whatsapp}`;
+      if (footerInstagramLink) footerInstagramLink.href = socialSettings.instagram;
+    }
+
+    // Funciones para el modal de configuración
+    function openSettingsModal() {
+      document.getElementById('settingsWhatsapp').value = socialSettings.whatsapp;
+      document.getElementById('settingsInstagram').value = socialSettings.instagram;
+      document.getElementById('settingsFacebook').value = socialSettings.facebook;
+      document.getElementById('settingsSiteName').value = socialSettings.siteName;
+      document.getElementById('settingsSiteTitle').value = socialSettings.siteTitle;
+      document.getElementById('settingsModal').classList.add('active');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.remove('active');
+    }
+
+    async function saveSettings() {
+      const whatsapp = document.getElementById('settingsWhatsapp').value.trim();
+      const instagram = document.getElementById('settingsInstagram').value.trim();
+      const facebook = document.getElementById('settingsFacebook').value.trim();
+      const siteName = document.getElementById('settingsSiteName').value.trim();
+      const siteTitle = document.getElementById('settingsSiteTitle').value.trim();
+
+      if (!whatsapp || !instagram || !facebook || !siteName || !siteTitle) {
+        showNotification('❌ Todos los campos son obligatorios', 'error');
+        return;
+      }
+
+      showLoading('Guardando configuración...');
+
+      try {
+        const { data: existing } = await supabaseClient
+          .from('settings')
+          .select('id')
+          .single();
+
+        let result;
+        if (existing) {
+          result = await supabaseClient
+            .from('settings')
+            .update({
+              whatsapp: whatsapp,
+              instagram: instagram,
+              facebook: facebook,
+              site_name: siteName,
+              site_title: siteTitle,
+              updated_at: new Date()
+            })
+            .eq('id', existing.id);
+        } else {
+          result = await supabaseClient
+            .from('settings')
+            .insert([{
+              whatsapp: whatsapp,
+              instagram: instagram,
+              facebook: facebook,
+              site_name: siteName,
+              site_title: siteTitle
+            }]);
+        }
+
+        hideLoading();
+
+        if (result.error) throw result.error;
+
+        socialSettings = { whatsapp, instagram, facebook, siteName, siteTitle };
+        updateSiteName();
+        updateSocialLinks();
+        showNotification('✅ Configuración guardada', 'success');
+        closeSettingsModal();
+      } catch (error) {
+        hideLoading();
+        console.error('Error al guardar configuración:', error);
+        showNotification('❌ Error al guardar configuración', 'error');
+      }
+    }
+
+    // Inicializar IndexedDB
+    function initDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onerror = () => {
+          console.error('Error al abrir IndexedDB');
+          reject(request.error);
+        };
+
+        request.onsuccess = () => {
+          db = request.result;
+          console.log('IndexedDB abierto correctamente');
+          resolve(db);
+        };
+
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+            store.createIndex('name', 'name', { unique: false });
+            store.createIndex('price', 'price', { unique: false });
+            console.log('Store creado');
+          }
+        };
+      });
+    }
+
+    // Verificar sesión al cargar
+    async function checkSession() {
+      showLoading('Verificando sesión...');
+      try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session) {
+          const { data: userData } = await supabaseClient
+            .from('users')
+            .select('*')
+            .eq('email', session.user.email)
+            .single();
+          
+          if (userData && userData.role === 'admin') {
+            currentUser = userData;
+            document.getElementById('adminPanel').classList.add('visible');
+            console.log('Sesión de admin activa');
+          }
+        }
+      } catch (error) {
+        console.error('Error al verificar sesión:', error);
+      } finally {
+        hideLoading();
+      }
+    }
+
+    // Obtener productos desde Supabase
+    async function fetchProducts() {
+      showLoading('Cargando productos...');
+      try {
+        const { data, error } = await supabaseClient
+          .from('products')
+          .select('*')
+          .order('id', { ascending: true });
+
+        if (error) throw error;
+        
+        products = data || [];
+        applyFilters();
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+        showNotification('❌ Error al cargar productos', 'error');
+      } finally {
+        hideLoading();
+      }
+    }
+
+    // Aplicar filtros combinados (búsqueda, categoría, precio)
+    function applyFilters() {
+      const searchTerm = document.getElementById('catalogProductFilter').value.toLowerCase().trim();
+      const category = document.getElementById('categoryFilter').value;
+      let minPrice = parseInt(document.getElementById('minPrice').value);
+      let maxPrice = parseInt(document.getElementById('maxPrice').value);
+      
+      if (isNaN(minPrice)) minPrice = 0;
+      if (isNaN(maxPrice)) maxPrice = 1500;
+      
+      filteredProducts = products.filter(product => {
+        if (searchTerm && !product.name.toLowerCase().includes(searchTerm)) return false;
+        if (category !== 'all' && product.category !== category) return false;
+        const price = product.price;
+        if (price < minPrice || price > maxPrice) return false;
+        return true;
+      });
+      
+      renderProducts();
+      updateProductCount();
+    }
+
+    // Resetear todos los filtros
+    function resetFilters() {
+      document.getElementById('catalogProductFilter').value = '';
+      document.getElementById('categoryFilter').value = 'all';
+      document.getElementById('minPrice').value = '0';
+      document.getElementById('maxPrice').value = '1500';
+      applyFilters();
+    }
+
+    // Filtrar productos en el panel de administración
+    function filterAdminProducts() {
+      const searchTerm = document.getElementById('adminProductFilter').value.toLowerCase().trim();
+      if (searchTerm === '') {
+        renderAdminProducts(products);
+      } else {
+        const filtered = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+        renderAdminProducts(filtered);
+      }
+    }
+
+    // Renderizar productos en la página principal
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const isAdmin = !!currentUser;
+      
+      if (filteredProducts.length === 0) {
+        grid.innerHTML = '<div class="col-span-4 text-center py-12 text-muted-foreground">No hay productos disponibles</div>';
+        return;
+      }
+
+      grid.innerHTML = filteredProducts.map(product => `
+        <div class="product-card group cursor-pointer" onclick="goToProduct(${product.id})">
+          <div class="bg-card rounded-xl overflow-hidden boty-shadow boty-transition hover:shadow-lg">
+            <div class="aspect-square overflow-hidden bg-background">
+              <img src="${product.image}" alt="${product.name}" class="product-image w-full h-full object-cover">
+            </div>
+            <div class="p-3">
+              <span class="text-[10px] tracking-wider uppercase text-primary">${product.tagline || ''}</span>
+              <h3 class="font-serif text-sm text-foreground mt-1 mb-1 line-clamp-1">${product.name}</h3>
+              <p class="text-xs text-muted-foreground mb-2 line-clamp-2">${product.description || ''}</p>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-base font-medium text-foreground">$${product.price}</span>
+                ${product.original_price ? `<span class="text-xs text-muted-foreground line-through">$${product.original_price}</span>` : ''}
+              </div>
+              <button class="w-full bg-primary text-primary-foreground py-2 rounded-full text-xs font-medium hover:bg-primary/90 boty-transition" onclick="event.stopPropagation(); addToCart(${product.id})">
+                Agregar
+              </button>
+              ${isAdmin ? `
+                <div class="admin-card-buttons">
+                  <button class="admin-card-btn edit" onclick="event.stopPropagation(); editProductFromCard(${product.id})">Editar</button>
+                  <button class="admin-card-btn delete" onclick="event.stopPropagation(); deleteProductFromCard(${product.id})">Eliminar</button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function editProductFromCard(id) {
+      openAdminModal();
+      editProduct(id);
+    }
+
+    async function deleteProductFromCard(id) {
+      const confirmed = await showConfirm('¿Quieres eliminar este producto? Esta acción no se puede deshacer.');
+      if (!confirmed) return;
+
+      showLoading('Eliminando producto...');
+
+      try {
+        const product = products.find(p => p.id === id);
+        if (product?.image && product.image.includes('supabase.co')) {
+          try {
+            const filePath = product.image.split('/').pop();
+            await supabaseClient.storage.from('productos').remove([filePath]);
+          } catch (storageError) {
+            console.warn('Error al eliminar imagen:', storageError);
+          }
+        }
+
+        const { error } = await supabaseClient.from('products').delete().eq('id', id);
+        hideLoading();
+        if (error) throw error;
+        showNotification('✅ Producto eliminado', 'success');
+        await fetchProducts();
+        if (document.getElementById('adminProductsList')) renderAdminProducts(products);
+      } catch (error) {
+        hideLoading();
+        console.error('Error al eliminar producto:', error);
+        showNotification('❌ Error al eliminar producto', 'error');
+      }
+    }
+
+    function updateProductCount() {
+      const countEl = document.getElementById('productCount');
+      if (countEl) countEl.textContent = `${filteredProducts.length} producto${filteredProducts.length !== 1 ? 's' : ''}`;
+    }
+
+    function renderAdminProducts(productsToRender = products) {
+      const list = document.getElementById('adminProductsList');
+      if (!list) return;
+      if (productsToRender.length === 0) {
+        list.innerHTML = '<div class="p-4 text-center text-muted-foreground">No hay productos</div>';
+        return;
+      }
+      list.innerHTML = productsToRender.map(product => `
+        <div class="flex items-center justify-between p-4 border-b border-border">
+          <div class="flex items-center gap-3">
+            <img src="${product.image}" alt="${product.name}" class="w-12 h-12 object-cover rounded">
+            <div>
+              <h4 class="font-medium text-foreground">${product.name}</h4>
+              <p class="text-xs text-muted-foreground">$${product.price} - ${product.category}</p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="editProduct(${product.id})" class="p-2 text-foreground/70 hover:text-primary boty-transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </button>
+            <button onclick="deleteProduct(${product.id})" class="p-2 text-foreground/70 hover:text-destructive boty-transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Funciones de autenticación
+    function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
+    function closeLoginModal() { document.getElementById('loginModal').classList.remove('active'); document.getElementById('loginEmail').value = ''; document.getElementById('loginPassword').value = ''; }
+
+    async function handleLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      if (!email || !password) { showNotification('❌ Por favor completa todos los campos', 'error'); return; }
+      showLoading('Iniciando sesión...');
+      try {
+        const { data: authData, error: authError } = await supabaseClient.auth.signInWithPassword({ email, password });
+        if (authError) { hideLoading(); showNotification('❌ Credenciales incorrectas', 'error'); return; }
+        const { data: userData, error: userError } = await supabaseClient.from('users').select('*').eq('email', email).single();
+        hideLoading();
+        if (userError || !userData || userData.role !== 'admin') { await supabaseClient.auth.signOut(); showNotification('❌ No tienes permisos de administrador', 'error'); return; }
+        currentUser = userData;
+        showNotification('✅ Bienvenido administrador', 'success');
+        closeLoginModal();
+        document.getElementById('adminPanel').classList.add('visible');
+        renderProducts();
+      } catch (error) { hideLoading(); console.error('Error en login:', error); showNotification('❌ Error al iniciar sesión', 'error'); }
+    }
+
+    async function handleLogout() {
+      showLoading('Cerrando sesión...');
+      await supabaseClient.auth.signOut();
+      currentUser = null;
+      document.getElementById('adminPanel').classList.remove('visible');
+      closeAdminModal();
+      hideLoading();
+      showNotification('✅ Sesión cerrada', 'success');
+      renderProducts();
+    }
+
+    // Funciones para manejo de imágenes
+    function handleDragOver(event) { event.preventDefault(); event.stopPropagation(); document.getElementById('imageUploadArea').classList.add('dragover'); }
+    function handleDragLeave(event) { event.preventDefault(); event.stopPropagation(); document.getElementById('imageUploadArea').classList.remove('dragover'); }
+    function handleDrop(event) { event.preventDefault(); event.stopPropagation(); document.getElementById('imageUploadArea').classList.remove('dragover'); const files = event.dataTransfer.files; if (files.length > 0) handleImageFile(files[0]); }
+    function handleImageSelect(event) { const file = event.target.files[0]; if (file) handleImageFile(file); }
+    function handleImageFile(file) {
+      if (!file.type.startsWith('image/')) { showNotification('❌ Por favor selecciona una imagen válida', 'error'); return; }
+      if (file.size > 5 * 1024 * 1024) { showNotification('❌ La imagen no debe superar los 5MB', 'error'); return; }
+      selectedImageFile = file;
+      const reader = new FileReader();
+      reader.onload = function(e) { const preview = document.getElementById('imagePreview'); preview.src = e.target.result; preview.classList.remove('hidden'); document.getElementById('uploadPlaceholder').classList.add('hidden'); };
+      reader.readAsDataURL(file);
+    }
+
+    // Funciones del panel de administración
+    function openAdminModal() { document.getElementById('adminModal').classList.add('active'); document.getElementById('adminProductFilter').value = ''; renderAdminProducts(products); }
+    function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); clearForm(); }
+    function clearForm() {
+      document.getElementById('editProductId').value = '';
+      document.getElementById('productName').value = '';
+      document.getElementById('productCategory').value = 'Collares';
+      document.getElementById('productTagline').value = '';
+      document.getElementById('productPrice').value = '';
+      document.getElementById('productOriginalPrice').value = '';
+      document.getElementById('productDescription').value = '';
+      document.getElementById('formTitle').textContent = 'Agregar Nuevo Producto';
+      selectedImageFile = null;
+      document.getElementById('imagePreview').classList.add('hidden');
+      document.getElementById('uploadPlaceholder').classList.remove('hidden');
+      document.getElementById('imageInput').value = '';
+    }
+    function editProduct(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+      document.getElementById('editProductId').value = product.id;
+      document.getElementById('productName').value = product.name;
+      document.getElementById('productCategory').value = product.category;
+      document.getElementById('productTagline').value = product.tagline || '';
+      document.getElementById('productPrice').value = product.price;
+      document.getElementById('productOriginalPrice').value = product.original_price || '';
+      document.getElementById('productDescription').value = product.description || '';
+      document.getElementById('formTitle').textContent = 'Editar Producto';
+      if (product.image) { const preview = document.getElementById('imagePreview'); preview.src = product.image; preview.classList.remove('hidden'); document.getElementById('uploadPlaceholder').classList.add('hidden'); selectedImageFile = null; }
+    }
+    async function uploadImage(file) {
+      const fileName = `${Date.now()}_${file.name}`;
+      const { data, error } = await supabaseClient.storage.from('productos').upload(fileName, file);
+      if (error) throw error;
+      const { data: { publicUrl } } = supabaseClient.storage.from('productos').getPublicUrl(fileName);
+      return publicUrl;
+    }
+    async function saveProduct() {
+      const editId = document.getElementById('editProductId').value;
+      let imageUrl = '';
+      if (selectedImageFile) {
+        try { showLoading('🔄 Subiendo imagen...'); imageUrl = await uploadImage(selectedImageFile); hideLoading(); } 
+        catch (error) { hideLoading(); showNotification('❌ Error al subir la imagen', 'error'); return; }
+      } else if (editId) { const existingProduct = products.find(p => p.id === parseInt(editId)); imageUrl = existingProduct?.image || ''; } 
+      else { showNotification('❌ Debes seleccionar una imagen', 'error'); return; }
+      const productData = {
+        name: document.getElementById('productName').value,
+        category: document.getElementById('productCategory').value,
+        tagline: document.getElementById('productTagline').value,
+        image: imageUrl,
+        price: parseInt(document.getElementById('productPrice').value),
+        original_price: document.getElementById('productOriginalPrice').value ? parseInt(document.getElementById('productOriginalPrice').value) : null,
+        description: document.getElementById('productDescription').value
+      };
+      if (!productData.name || !productData.category || !productData.price) { showNotification('❌ Por favor completa todos los campos requeridos', 'error'); return; }
+      showLoading('Guardando producto...');
+      try {
+        let result;
+        if (editId) result = await supabaseClient.from('products').update(productData).eq('id', editId);
+        else result = await supabaseClient.from('products').insert([productData]);
+        hideLoading();
+        if (result.error) throw result.error;
+        showNotification(editId ? '✅ Producto actualizado' : '✅ Producto creado', 'success');
+        await fetchProducts();
+        clearForm();
+        renderAdminProducts(products);
+      } catch (error) { hideLoading(); console.error('Error al guardar producto:', error); showNotification('❌ Error al guardar producto', 'error'); }
+    }
+    async function deleteProduct(id) {
+      const confirmed = await showConfirm('¿Quieres eliminar este producto? Esta acción no se puede deshacer.');
+      if (!confirmed) return;
+      showLoading('Eliminando producto...');
+      try {
+        const product = products.find(p => p.id === id);
+        if (product?.image && product.image.includes('supabase.co')) { try { const filePath = product.image.split('/').pop(); await supabaseClient.storage.from('productos').remove([filePath]); } catch (storageError) { console.warn('Error al eliminar imagen:', storageError); } }
+        const { error } = await supabaseClient.from('products').delete().eq('id', id);
+        hideLoading();
+        if (error) throw error;
+        showNotification('✅ Producto eliminado', 'success');
+        await fetchProducts();
+        renderAdminProducts(products);
+      } catch (error) { hideLoading(); console.error('Error al eliminar producto:', error); showNotification('❌ Error al eliminar producto', 'error'); }
+    }
+
+    // Funciones del carrito (IndexedDB)
+    function getCartItems() { return new Promise((resolve) => { if (!db) { resolve([]); return; } const transaction = db.transaction([STORE_NAME], 'readonly'); const store = transaction.objectStore(STORE_NAME); const request = store.getAll(); request.onsuccess = () => resolve(request.result || []); request.onerror = () => resolve([]); }); }
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      if (!product || !db) return;
+      const transaction = db.transaction([STORE_NAME], 'readwrite');
+      const store = transaction.objectStore(STORE_NAME);
+      const getRequest = store.get(id);
+      getRequest.onsuccess = () => {
+        const existingItem = getRequest.result;
+        if (existingItem) { existingItem.quantity = (existingItem.quantity || 1) + 1; store.put(existingItem); } 
+        else { const cartItem = { ...product, quantity: 1 }; store.add(cartItem); }
+        showNotification(`✅ ${product.name} agregado al carrito`, 'success');
+        updateCartCount();
+        updateCartDrawer();
+      };
+    }
+    function removeFromCart(id) { if (!db) return; const transaction = db.transaction([STORE_NAME], 'readwrite'); const store = transaction.objectStore(STORE_NAME); store.delete(id); transaction.oncomplete = () => { updateCartCount(); updateCartDrawer(); if (document.getElementById('checkoutModal').classList.contains('active')) updateCheckoutModal(); showNotification('🗑️ Producto eliminado del carrito', 'success'); }; }
+    function updateQuantity(id, newQuantity) { if (!db) return; const transaction = db.transaction([STORE_NAME], 'readwrite'); const store = transaction.objectStore(STORE_NAME); const getRequest = store.get(id); getRequest.onsuccess = () => { const item = getRequest.result; if (item) { if (newQuantity <= 0) store.delete(id); else { item.quantity = newQuantity; store.put(item); } } }; transaction.oncomplete = () => { updateCartCount(); updateCartDrawer(); if (document.getElementById('checkoutModal').classList.contains('active')) updateCheckoutModal(); }; }
+    async function updateCartCount() { const items = await getCartItems(); const cartCount = document.getElementById('cartCount'); const totalItems = items.reduce((sum, item) => sum + (item.quantity || 1), 0); if (totalItems > 0) { cartCount.classList.remove('hidden'); cartCount.textContent = totalItems; } else { cartCount.classList.add('hidden'); } }
+    async function updateCartDrawer() {
+      const items = await getCartItems();
+      const cartItemsList = document.getElementById('cartItemsList');
+      const emptyCart = document.getElementById('emptyCart');
+      const cartFooter = document.getElementById('cartFooter');
+      const cartItemsText = document.getElementById('cartItemsText');
+      const subtotalSpan = document.getElementById('subtotal');
+      const totalSpan = document.getElementById('total');
+      const totalItems = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      if (cartItemsText) cartItemsText.textContent = `${totalItems} artículo${totalItems !== 1 ? 's' : ''}`;
+      if (items.length === 0) { if (emptyCart) emptyCart.classList.remove('hidden'); if (cartItemsList) cartItemsList.classList.add('hidden'); if (cartFooter) cartFooter.classList.add('hidden'); } 
+      else { if (emptyCart) emptyCart.classList.add('hidden'); if (cartItemsList) cartItemsList.classList.remove('hidden'); if (cartFooter) cartFooter.classList.remove('hidden'); if (cartItemsList) { cartItemsList.innerHTML = items.map(item => `<div class="cart-item flex gap-4 py-4 border-b border-border/50" data-product-id="${item.id}"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-sm text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-xs text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-3"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) - 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">-</button><span class="px-3 py-1 text-sm">${item.quantity || 1}</span><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) + 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">+</button></div><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join(''); } const subtotal = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0); if (subtotalSpan) subtotalSpan.textContent = `$${subtotal}`; if (totalSpan) totalSpan.textContent = `$${subtotal}`; }
+    }
+    async function updateCheckoutModal() {
+      const items = await getCartItems();
+      if (items.length === 0) { closeCheckoutModal(); showNotification('🛒 Tu carrito está vacío', 'info'); return; }
+      const productsList = document.getElementById('checkoutProductsList');
+      productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground">${item.name}</h4><p class="text-xs text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-sm text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-2" title="Eliminar producto"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join('');
+      const total = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+      document.getElementById('checkoutTotal').textContent = `$${total}`;
+    }
+    async function openCheckoutModal() { const items = await getCartItems(); if (items.length === 0) { showNotification('❌ Tu carrito está vacío', 'error'); return; } await updateCheckoutModal(); document.getElementById('checkoutNotas').value = ''; closeCart(); document.getElementById('checkoutModal').classList.add('active'); }
+    function closeCheckoutModal() { document.getElementById('checkoutModal').classList.remove('active'); }
+    async function sendCheckoutWhatsApp() {
+      const items = await getCartItems();
+      if (items.length === 0) { closeCheckoutModal(); showNotification('❌ Tu carrito está vacío', 'error'); return; }
+      showLoading('Preparando mensaje de WhatsApp...');
+      const notas = document.getElementById('checkoutNotas').value.trim();
+      const total = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+      let mensaje = `*** *PEDIDO NUEVO - ${socialSettings.siteName}* ***\n\n--- PRODUCTOS ---\n`;
+      items.forEach((item, index) => { mensaje += `\n${index + 1}. ${item.name}\n   > TagLine: ${item.tagline || 'No especificada'}\n   > Cantidad: ${item.quantity || 1}\n   > Subtotal: $${item.price * (item.quantity || 1)}\n`; });
+      mensaje += `\n=== TOTAL DEL PEDIDO: $${total} ===\n`;
+      if (notas) mensaje += `\n--- NOTAS ADICIONALES ---\n${notas}\n`;
+      mensaje += `\n--------------------------------\n🕐 *¡En breve te contactaremos para confirmar!*\n\n*¡Gracias por elegir ${socialSettings.siteName}. Cada detalle está hecho con amor para ti!*`;
+      const mensajeCodificado = encodeURIComponent(mensaje);
+      hideLoading();
+      window.open(`https://wa.me/${socialSettings.whatsapp}?text=${mensajeCodificado}`, '_blank');
+      closeCheckoutModal();
+      showNotification('✅ Pedido enviado por WhatsApp', 'success');
+    }
+    function goToProduct(id) { window.location.href = `product.html?id=${id}`; }
+
+    // Funcionalidad del menú móvil y carrito
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    if (mobileMenuBtn) { mobileMenuBtn.addEventListener('click', function() { if (mobileMenu.classList.contains('max-h-0')) { mobileMenu.classList.remove('max-h-0'); mobileMenu.classList.add('max-h-64', 'py-2'); menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } else { mobileMenu.classList.add('max-h-0'); mobileMenu.classList.remove('max-h-64', 'py-2'); menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } }); }
+    const cartBtn = document.getElementById('cartBtn');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartPanel = document.getElementById('cartPanel');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    function openCart() { if (cartDrawer) { cartDrawer.classList.remove('hidden'); setTimeout(() => { if (cartPanel) cartPanel.classList.remove('translate-x-full'); }, 10); updateCartDrawer(); } }
+    function closeCart() { if (cartPanel) cartPanel.classList.add('translate-x-full'); setTimeout(() => { if (cartDrawer) cartDrawer.classList.add('hidden'); }, 400); }
+    if (cartBtn) cartBtn.addEventListener('click', openCart);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+    // Colapsar filtros
+    const toggleBtn = document.getElementById('toggleFiltersBtn');
+    const filtersCollapsible = document.getElementById('filtersCollapsible');
+    let filtersOpen = false;
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        filtersOpen = !filtersOpen;
+        if (filtersOpen) {
+          filtersCollapsible.classList.add('open');
+          toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> Ocultar filtros avanzados';
+        } else {
+          filtersCollapsible.classList.remove('open');
+          toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg> Mostrar filtros avanzados';
+        }
+      });
+    }
+
+    // Inicializar la aplicación
+    async function initApp() { try { await initDB(); await checkSession(); await loadSocialSettings(); await fetchProducts(); await updateCartCount(); console.log('Aplicación inicializada correctamente'); } catch (error) { console.error('Error al inicializar la aplicación:', error); } }
+    document.addEventListener('DOMContentLoaded', initApp);
+
+    // Exponer funciones globalmente
+    window.goToProduct = goToProduct;
+    window.addToCart = addToCart;
+    window.closeCart = closeCart;
+    window.removeFromCart = removeFromCart;
+    window.updateQuantity = updateQuantity;
+    window.openCheckoutModal = openCheckoutModal;
+    window.closeCheckoutModal = closeCheckoutModal;
+    window.sendCheckoutWhatsApp = sendCheckoutWhatsApp;
+    window.openLoginModal = openLoginModal;
+    window.closeLoginModal = closeLoginModal;
+    window.handleLogin = handleLogin;
+    window.handleLogout = handleLogout;
+    window.openAdminModal = openAdminModal;
+    window.closeAdminModal = closeAdminModal;
+    window.editProduct = editProduct;
+    window.deleteProduct = deleteProduct;
+    window.saveProduct = saveProduct;
+    window.clearForm = clearForm;
+    window.handleDragOver = handleDragOver;
+    window.handleDragLeave = handleDragLeave;
+    window.handleDrop = handleDrop;
+    window.handleImageSelect = handleImageSelect;
+    window.openSettingsModal = openSettingsModal;
+    window.closeSettingsModal = closeSettingsModal;
+    window.saveSettings = saveSettings;
+    window.filterAdminProducts = filterAdminProducts;
+    window.editProductFromCard = editProductFromCard;
+    window.deleteProductFromCard = deleteProductFromCard;
+    window.applyFilters = applyFilters;
+    window.resetFilters = resetFilters;
+  </script>
+</body>
+</html>
