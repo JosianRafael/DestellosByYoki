@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title id="pageTitle">Destellos by Yoki - Bisutería Artesanal</title>
   <meta name="description" content="Descubre nuestra pieza única de bisutería artesanal hecha a mano.">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,16 +39,27 @@
     }
   </script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { background-color: #F7F4EF; color: #2C2C2C; font-family: 'DM Sans', sans-serif; }
+    /* ESCALADO MODERADO - Igual que las otras páginas */
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 93.75%; /* 15px en lugar de 16px */
+    }
+    body { 
+      background-color: #F7F4EF; 
+      color: #2C2C2C; 
+      font-family: 'DM Sans', sans-serif; 
+    }
     .font-serif { font-family: 'Playfair Display', serif; }
-    .boty-shadow { box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px; }
+    
+    .boty-shadow { 
+      box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px; 
+    }
     .boty-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     @keyframes scale-fade-in { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
     .animate-scale-fade-in { animation: scale-fade-in 0.6s ease-out; }
     
     /* Estilos para el carrito */
-    .cart-item-image { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+    .cart-item-image { width: 75px; height: 75px; object-fit: cover; border-radius: 8px; }
     .cart-item { transition: background-color 0.3s ease; }
     .cart-item:hover { background-color: rgba(0,0,0,0.02); }
 
@@ -76,8 +87,8 @@
 
     .modal-content {
       background-color: #F7F4EF;
-      border-radius: 24px;
-      max-width: 600px;
+      border-radius: 22px;
+      max-width: 560px;
       width: 90%;
       max-height: 90vh;
       overflow-y: auto;
@@ -89,12 +100,11 @@
       transform: translateY(0);
     }
 
-    /* Estilos para el campo de notas */
     .notas-textarea {
       resize: none;
       border: 1px solid #D8CFC4;
       border-radius: 12px;
-      padding: 12px;
+      padding: 10px;
       width: 100%;
       font-family: 'DM Sans', sans-serif;
       transition: border-color 0.3s ease;
@@ -105,12 +115,11 @@
       border-color: #4F5B3A;
     }
 
-    /* Estilos para la lista de productos en el modal */
     .modal-product-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
+      gap: 10px;
+      padding: 10px;
       border-bottom: 1px solid #D8CFC4;
       transition: background-color 0.3s ease;
     }
@@ -124,8 +133,8 @@
     }
 
     .modal-product-image {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -148,7 +157,6 @@
       color: #8B4A45;
     }
 
-    /* Estilos para el modal de login */
     .login-modal {
       position: fixed;
       top: 0;
@@ -172,10 +180,10 @@
 
     .login-modal-content {
       background-color: #F7F4EF;
-      border-radius: 24px;
+      border-radius: 22px;
       max-width: 400px;
       width: 90%;
-      padding: 2rem;
+      padding: 1.8rem;
       transform: translateY(-20px);
       transition: all 0.3s ease;
     }
@@ -187,9 +195,9 @@
     .admin-badge {
       background-color: #4F5B3A;
       color: #F7F4EF;
-      padding: 4px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 11px;
       margin-left: 8px;
     }
 
@@ -209,8 +217,8 @@
     .admin-button {
       background-color: #4F5B3A;
       color: #F7F4EF;
-      width: 50px;
-      height: 50px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -232,13 +240,12 @@
       background-color: #4F5B3A;
     }
 
-    /* Spinner de carga */
     .spinner {
       border: 3px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
       border-top: 3px solid #4F5B3A;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       animation: spin 1s linear infinite;
       margin: 0 auto;
     }
@@ -271,8 +278,8 @@
 
     .loading-content {
       background-color: #F7F4EF;
-      padding: 2rem;
-      border-radius: 24px;
+      padding: 1.8rem;
+      border-radius: 22px;
       text-align: center;
       max-width: 300px;
       width: 90%;
@@ -282,6 +289,15 @@
       margin-top: 1rem;
       color: #2C2C2C;
       font-family: 'DM Sans', sans-serif;
+    }
+    
+    /* Ajustes de espaciado */
+    .max-w-7xl {
+      max-width: 76rem !important;
+    }
+    
+    main.pt-28 {
+      padding-top: 5rem !important;
     }
   </style>
 </head>
@@ -296,73 +312,73 @@
 
   <!-- Modal para Comprar Ahora (Producto Individual) -->
   <div id="buyNowModal" class="modal-overlay">
-    <div class="modal-content p-8">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Confirmar Compra</h3>
         <button onclick="closeBuyNowModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-6">
-        <div class="flex gap-4 items-start mb-4">
-          <img id="modalProductImage" src="" alt="" class="w-20 h-20 object-cover rounded-lg">
+      <div class="mb-5">
+        <div class="flex gap-3 items-start mb-3">
+          <img id="modalProductImage" src="" alt="" class="w-16 h-16 object-cover rounded-lg">
           <div>
-            <h4 id="modalProductName" class="font-serif text-lg text-foreground"></h4>
-            <p id="modalProductTagline" class="text-sm text-muted-foreground"></p>
-            <div class="flex items-center gap-2 mt-2">
-              <span id="modalProductPrice" class="font-medium text-foreground"></span>
-              <span id="modalProductQuantity" class="text-sm text-muted-foreground"></span>
+            <h4 id="modalProductName" class="font-serif text-base text-foreground"></h4>
+            <p id="modalProductTagline" class="text-xs text-muted-foreground"></p>
+            <div class="flex items-center gap-2 mt-1">
+              <span id="modalProductPrice" class="font-medium text-foreground text-sm"></span>
+              <span id="modalProductQuantity" class="text-xs text-muted-foreground"></span>
             </div>
           </div>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Notas adicionales (opcional)</label>
-          <textarea id="notasAdicionales" class="notas-textarea" rows="3" placeholder="Ej: ¿Algún detalle especial?"></textarea>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Notas adicionales (opcional)</label>
+          <textarea id="notasAdicionales" class="notas-textarea text-sm" rows="2" placeholder="Ej: ¿Algún detalle especial?"></textarea>
         </div>
-        <div class="bg-primary/5 rounded-lg p-4"></div>
+        <div class="bg-primary/5 rounded-lg p-3"></div>
       </div>
-      <div class="flex gap-4">
-        <button onclick="sendWhatsAppMessage()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Enviar Mensaje</button>
-        <button onclick="closeBuyNowModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="sendWhatsAppMessage()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">Enviar Mensaje</button>
+        <button onclick="closeBuyNowModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">Cancelar</button>
       </div>
     </div>
   </div>
 
   <!-- Modal para Pagar (Carrito Completo) -->
   <div id="checkoutModal" class="modal-overlay">
-    <div class="modal-content p-8">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Finalizar Pedido</h3>
         <button onclick="closeCheckoutModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-6">
-        <h4 class="font-medium text-foreground mb-3">Productos en tu carrito:</h4>
-        <div id="checkoutProductsList" class="max-h-60 overflow-y-auto border border-border rounded-lg mb-4"></div>
-        <div class="bg-card p-4 rounded-lg mb-4">
+      <div class="mb-5">
+        <h4 class="font-medium text-foreground mb-2 text-sm">Productos en tu carrito:</h4>
+        <div id="checkoutProductsList" class="max-h-52 overflow-y-auto border border-border rounded-lg mb-3"></div>
+        <div class="bg-card p-3 rounded-lg mb-3">
           <div class="flex justify-between items-center">
-            <span class="font-medium text-foreground">Total del pedido:</span>
-            <span id="checkoutTotal" class="font-medium text-foreground text-lg">$0</span>
+            <span class="font-medium text-foreground text-sm">Total del pedido:</span>
+            <span id="checkoutTotal" class="font-medium text-foreground text-base">$0</span>
           </div>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Notas adicionales para el pedido (opcional)</label>
-          <textarea id="checkoutNotas" class="notas-textarea" rows="3" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Notas adicionales para el pedido (opcional)</label>
+          <textarea id="checkoutNotas" class="notas-textarea text-sm" rows="2" placeholder="Ej: Dirección de envío, horario de entrega, algún detalle especial..."></textarea>
         </div>
-        <div class="bg-primary/5 rounded-lg p-4">
-          <p class="text-sm text-foreground/70">
-            <span class="font-medium text-primary">📱 WhatsApp:</span> Te contactaremos al número que uses para enviar el mensaje.
+        <div class="bg-primary/5 rounded-lg p-3">
+          <p class="text-xs text-foreground/70">
+            <span class="font-medium text-primary text-xs">📱 WhatsApp:</span> Te contactaremos al número que uses para enviar el mensaje.
           </p>
         </div>
       </div>
-      <div class="flex gap-4">
-        <button onclick="sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Enviar Pedido por WhatsApp</button>
-        <button onclick="closeCheckoutModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="sendCheckoutWhatsApp()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">Enviar Pedido por WhatsApp</button>
+        <button onclick="closeCheckoutModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">Cancelar</button>
       </div>
     </div>
   </div>
@@ -370,76 +386,76 @@
   <!-- Modal de Login para Administrador -->
   <div id="loginModal" class="login-modal">
     <div class="login-modal-content">
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Acceso</h3>
         <button onclick="closeLoginModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-4">
-        <label class="text-sm font-medium text-foreground mb-2 block">Email</label>
-        <input type="email" id="loginEmail" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
+      <div class="mb-3">
+        <label class="text-xs font-medium text-foreground mb-1 block">Email</label>
+        <input type="email" id="loginEmail" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Email">
       </div>
-      <div class="mb-6">
-        <label class="text-sm font-medium text-foreground mb-2 block">Contraseña</label>
-        <input type="password" id="loginPassword" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
+      <div class="mb-5">
+        <label class="text-xs font-medium text-foreground mb-1 block">Contraseña</label>
+        <input type="password" id="loginPassword" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="••••••••">
       </div>
-      <div class="flex gap-4">
-        <button onclick="handleLogin()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Iniciar Sesión</button>
-        <button onclick="closeLoginModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="handleLogin()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">Iniciar Sesión</button>
+        <button onclick="closeLoginModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">Cancelar</button>
       </div>
     </div>
   </div>
 
   <!-- Modal de Configuración (Redes Sociales + Nombre del sitio) -->
   <div id="settingsModal" class="modal-overlay">
-    <div class="modal-content p-8 max-w-lg">
-      <div class="flex justify-between items-center mb-6">
+    <div class="modal-content p-6 max-w-lg">
+      <div class="flex justify-between items-center mb-5">
         <h3 class="font-serif text-2xl text-foreground">Configuración</h3>
         <button onclick="closeSettingsModal()" class="text-foreground/60 hover:text-foreground boty-transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="mb-6">
-        <h4 class="font-medium text-foreground mb-4 pb-2 border-b border-border">Información del sitio</h4>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Nombre del sitio (logo y footer)</label>
-          <input type="text" id="settingsSiteName" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
-          <p class="text-xs text-muted-foreground mt-1">Este nombre aparecerá en el logo del header y en el footer.</p>
+      <div class="mb-5">
+        <h4 class="font-medium text-foreground mb-3 pb-2 border-b border-border text-sm">Información del sitio</h4>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Nombre del sitio (logo y footer)</label>
+          <input type="text" id="settingsSiteName" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki">
+          <p class="text-[0.6rem] text-muted-foreground mt-1">Este nombre aparecerá en el logo del header y en el footer.</p>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Título SEO (title de la pestaña)</label>
-          <input type="text" id="settingsSiteTitle" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
-          <p class="text-xs text-muted-foreground mt-1">Aparecerá en la pestaña del navegador.</p>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Título SEO (title de la pestaña)</label>
+          <input type="text" id="settingsSiteTitle" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: Destellos by Yoki - Bisutería Artesanal">
+          <p class="text-[0.6rem] text-muted-foreground mt-1">Aparecerá en la pestaña del navegador.</p>
         </div>
         
-        <h4 class="font-medium text-foreground mb-4 mt-6 pb-2 border-b border-border">Redes Sociales</h4>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">Número de WhatsApp</label>
-          <input type="text" id="settingsWhatsapp" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
-          <p class="text-xs text-muted-foreground mt-1">Solo el número, sin espacios ni símbolos</p>
+        <h4 class="font-medium text-foreground mb-3 mt-5 pb-2 border-b border-border text-sm">Redes Sociales</h4>
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">Número de WhatsApp</label>
+          <input type="text" id="settingsWhatsapp" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="Ej: 8292656817">
+          <p class="text-[0.6rem] text-muted-foreground mt-1">Solo el número, sin espacios ni símbolos</p>
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">URL de Instagram</label>
-          <input type="text" id="settingsInstagram" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">URL de Instagram</label>
+          <input type="text" id="settingsInstagram" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://instagram.com/destelloslv">
         </div>
-        <div class="mb-4">
-          <label class="text-sm font-medium text-foreground mb-2 block">URL de Facebook</label>
-          <input type="text" id="settingsFacebook" class="w-full px-4 py-2 rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
+        <div class="mb-3">
+          <label class="text-xs font-medium text-foreground mb-1 block">URL de Facebook</label>
+          <input type="text" id="settingsFacebook" class="w-full px-3 py-1.5 text-sm rounded-lg border border-border focus:outline-none focus:border-primary" placeholder="https://facebook.com/destelloslv">
         </div>
-        <div class="bg-primary/5 rounded-lg p-4">
-          <p class="text-sm text-foreground/70">
-            <span class="font-medium text-primary">ℹ️ Información:</span> Estos datos se usarán en todos los enlaces de redes sociales y en el nombre visible de la página.
+        <div class="bg-primary/5 rounded-lg p-3">
+          <p class="text-xs text-foreground/70">
+            <span class="font-medium text-primary text-xs">ℹ️ Información:</span> Estos datos se usarán en todos los enlaces de redes sociales y en el nombre visible de la página.
           </p>
         </div>
       </div>
-      <div class="flex gap-4">
-        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 boty-transition">Guardar Configuración</button>
-        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted boty-transition">Cancelar</button>
+      <div class="flex gap-3">
+        <button onclick="saveSettings()" class="flex-1 bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">Guardar Configuración</button>
+        <button onclick="closeSettingsModal()" class="flex-1 border border-border text-foreground px-5 py-2 rounded-full font-medium text-sm hover:bg-muted boty-transition">Cancelar</button>
       </div>
     </div>
   </div>
@@ -447,40 +463,40 @@
   <!-- Header -->
   <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
     <nav class="max-w-7xl mx-auto px-6 lg:px-8 backdrop-blur-md rounded-lg py-0 my-0 animate-scale-fade-in bg-white/40 border border-white/30" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;">
-      <div class="flex items-center justify-between h-[68px]">
-        <button type="button" class="lg:hidden p-2 text-foreground/80 hover:text-foreground boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
-          <svg class="w-5 h-5" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-center justify-between h-[62px]">
+        <button type="button" class="lg:hidden p-1.5 text-foreground/80 hover:text-foreground boty-transition" id="mobileMenuBtn" aria-label="Toggle menu">
+          <svg class="w-4 h-4" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
-          <svg class="w-5 h-5 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
-        <div class="hidden lg:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-7">
           <a href="shop.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Catálogo</a>
           <a href="about.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
           <a href="#" id="footerContactLink" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
         </div>
         <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
-          <h1 id="siteLogo" class="font-serif text-3xl tracking-wider text-foreground"> </h1>
+          <h1 id="siteLogo" class="font-serif text-2xl tracking-wider text-foreground"> </h1>
         </a>
-        <div class="flex items-center gap-4">
-          <a href="#" onclick="openLoginModal()" class="hidden sm:block p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Account">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-3">
+          <a href="#" onclick="openLoginModal()" class="hidden sm:block p-1.5 text-foreground/70 hover:text-foreground boty-transition" aria-label="Account">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
           </a>
-          <button type="button" id="cartBtn" class="relative p-2 text-foreground/70 hover:text-foreground boty-transition" aria-label="Cart">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button type="button" id="cartBtn" class="relative p-1.5 text-foreground/70 hover:text-foreground boty-transition" aria-label="Cart">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
-            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-4 h-4 bg-primary text-primary-foreground text-[10px] flex items-center justify-center rounded-full">0</span>
+            <span id="cartCount" class="hidden absolute -top-0 -right-0 w-3.5 h-3.5 bg-primary text-primary-foreground text-[9px] flex items-center justify-center rounded-full">0</span>
           </button>
         </div>
       </div>
       <div id="mobileMenu" class="lg:hidden overflow-hidden boty-transition max-h-0">
-        <div class="flex flex-col gap-4 pt-4 pb-6 border-t border-border/50">
+        <div class="flex flex-col gap-3 pt-3 pb-5 border-t border-border/50">
           <a href="shop.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Catálogo</a>
           <a href="about.html" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Sobre nosotros</a>
           <a href="#" id="footerContactLinkMobile" class="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">Contáctanos</a>
@@ -493,24 +509,24 @@
   <!-- Cart Drawer -->
   <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/50" id="cartOverlay"></div>
-    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[440px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
+    <div class="absolute right-0 top-0 h-full w-full sm:max-w-[420px] bg-background shadow-xl transform translate-x-full boty-transition" id="cartPanel">
       <div class="flex flex-col h-full">
-        <div class="border-b border-border/50 p-6 py-4 flex items-center justify-between">
-          <div><h2 class="font-serif text-2xl">Carrito</h2><p class="text-sm text-muted-foreground" id="cartItemsText">0 artículos</p></div>
-          <button type="button" id="closeCartBtn" class="p-2 text-foreground/70 hover:text-foreground"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+        <div class="border-b border-border/50 p-5 py-3.5 flex items-center justify-between">
+          <div><h2 class="font-serif text-xl">Carrito</h2><p class="text-xs text-muted-foreground" id="cartItemsText">0 artículos</p></div>
+          <button type="button" id="closeCartBtn" class="p-1.5 text-foreground/70 hover:text-foreground"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
         </div>
-        <div class="flex-1 overflow-y-auto p-6" id="cartItems">
+        <div class="flex-1 overflow-y-auto p-5" id="cartItems">
           <div class="flex flex-col items-center justify-center h-full text-center" id="emptyCart">
-            <svg class="w-12 h-12 text-muted-foreground/50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-            <p class="text-muted-foreground">Tu carrito está vacío</p>
-            <button type="button" onclick="closeCart()" class="mt-4 text-primary hover:underline text-sm">Seguir comprando</button>
+            <svg class="w-10 h-10 text-muted-foreground/50 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <p class="text-sm text-muted-foreground">Tu carrito está vacío</p>
+            <button type="button" onclick="closeCart()" class="mt-3 text-primary hover:underline text-xs">Seguir comprando</button>
           </div>
-          <div id="cartItemsList" class="space-y-6 hidden"></div>
+          <div id="cartItemsList" class="space-y-5 hidden"></div>
         </div>
-        <div id="cartFooter" class="hidden border-t border-border/50 p-6 space-y-4">
-          <div class="space-y-2 text-sm"><div class="flex justify-between text-muted-foreground"><span>Subtotal</span><span id="subtotal">$0</span></div><div class="flex justify-between text-base font-medium text-foreground pt-2 border-t border-border/50"><span>Total</span><span id="total">$0</span></div></div>
-          <button type="button" onclick="openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-4 rounded-full font-medium hover:bg-primary/90 boty-transition">Pagar</button>
-          <button type="button" onclick="closeCart()" class="w-full border border-border text-foreground py-4 rounded-full font-medium hover:bg-muted boty-transition">Seguir comprando</button>
+        <div id="cartFooter" class="hidden border-t border-border/50 p-5 space-y-3">
+          <div class="space-y-1 text-sm"><div class="flex justify-between text-xs text-muted-foreground"><span>Subtotal</span><span id="subtotal">$0</span></div><div class="flex justify-between text-base font-medium text-foreground pt-2 border-t border-border/50"><span>Total</span><span id="total">$0</span></div></div>
+          <button type="button" onclick="openCheckoutModal()" class="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium text-sm hover:bg-primary/90 boty-transition">Pagar</button>
+          <button type="button" onclick="closeCart()" class="w-full border border-border text-foreground py-3 rounded-full font-medium text-sm hover:bg-muted boty-transition">Seguir comprando</button>
         </div>
       </div>
     </div>
@@ -518,44 +534,47 @@
 
   <!-- Panel de Administración (solo visible para admin) -->
   <div id="adminPanel" class="admin-controls">
-    <div class="admin-button" onclick="window.location.href='shop.html'" title="Administrar productos"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div>
-    <div class="admin-button settings-button" onclick="openSettingsModal()" title="Configuración"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-    <div class="admin-button logout-button" onclick="handleLogout()" title="Cerrar sesión"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></div>
+    <div class="admin-button" onclick="window.location.href='shop.html'" title="Administrar productos"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div>
+    <div class="admin-button settings-button" onclick="openSettingsModal()" title="Configuración"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+    <div class="admin-button logout-button" onclick="handleLogout()" title="Cerrar sesión"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4 4m4-4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></div>
   </div>
 
-  <main class="pt-28 pb-20">
+  <br>
+  <br>
+
+  <main class="pt-20 pb-16">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <a href="shop.html" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground boty-transition mb-8"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver al Catálogo</a>
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
-        <div class="relative aspect-square rounded-3xl overflow-hidden bg-card boty-shadow"><img id="productImage" src="" alt="" class="w-full h-full object-cover"></div>
+      <a href="shop.html" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground boty-transition mb-6"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver al Catálogo</a>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+        <div class="relative aspect-square rounded-2xl overflow-hidden bg-card boty-shadow"><img id="productImage" src="" alt="" class="w-full h-full object-cover"></div>
         <div class="flex flex-col">
-          <div class="mb-8">
-            <span class="text-sm tracking-[0.3em] uppercase text-primary mb-2 block" id="productCategory">Destellos by Yoki</span>
-            <h1 id="productName" class="font-serif text-4xl md:text-5xl text-foreground mb-3"></h1>
-            <p id="productTagline" class="text-lg text-muted-foreground italic mb-4"></p>
-            <div class="flex items-center gap-2 mb-4"><div class="flex"><svg class="w-4 h-4 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div></div>
-            <p id="productDescription" class="text-foreground/80 leading-relaxed"></p>
+          <div class="mb-6">
+            <span class="text-xs tracking-[0.3em] uppercase text-primary mb-2 block" id="productCategory">Destellos by Yoki</span>
+            <h1 id="productName" class="font-serif text-3xl md:text-4xl text-foreground mb-2"></h1>
+            <p id="productTagline" class="text-base text-muted-foreground italic mb-3"></p>
+            <div class="flex items-center gap-1.5 mb-3"><div class="flex"><svg class="w-3.5 h-3.5 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-3.5 h-3.5 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-3.5 h-3.5 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-3.5 h-3.5 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-3.5 h-3.5 fill-primary text-primary" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div></div>
+            <p id="productDescription" class="text-sm text-foreground/80 leading-relaxed"></p>
           </div>
-          <div class="flex items-center gap-3 mb-8"><span id="productPrice" class="text-3xl font-medium text-foreground"></span><span id="productOriginalPrice" class="text-xl text-muted-foreground line-through hidden"></span></div>
-          <div class="mb-8"><label class="text-sm font-medium text-foreground mb-3 block">Cantidad</label><div class="inline-flex items-center gap-4 bg-card rounded-full px-2 py-2 boty-shadow"><button type="button" onclick="changeQuantity(-1)" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button><span id="quantity" class="w-8 text-center font-medium text-foreground">1</span><button type="button" onclick="changeQuantity(1)" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button></div></div>
-          <div class="flex flex-col sm:flex-row gap-4 mb-10"><button type="button" id="addToCartBtn" onclick="addProductToCart()" class="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm tracking-wide boty-transition boty-shadow bg-primary text-primary-foreground hover:bg-primary/90">Agregar al Carrito</button><button type="button" onclick="openBuyNowModal()" class="flex-1 inline-flex items-center justify-center gap-2 bg-transparent border border-foreground/20 text-foreground px-8 py-4 rounded-full text-sm tracking-wide boty-transition hover:bg-foreground/5">Comprar Ahora</button></div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4"><div class="flex flex-col items-center gap-2 p-4 rounded-md"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg><span class="text-xs text-muted-foreground text-center">100% Hecho a Mano</span></div><div class="flex flex-col items-center gap-2 p-4 rounded-md"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span class="text-xs text-muted-foreground text-center">Materiales de Calidad</span></div><div class="flex flex-col items-center gap-2 p-4 rounded-md"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/></svg><span class="text-xs text-muted-foreground text-center">Diseños Únicos</span></div><div class="flex flex-col items-center gap-2 p-4 rounded-md"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><span class="text-xs text-muted-foreground text-center">Hecho con Amor</span></div></div>
+          <div class="flex items-center gap-2 mb-6"><span id="productPrice" class="text-2xl font-medium text-foreground"></span><span id="productOriginalPrice" class="text-base text-muted-foreground line-through hidden"></span></div>
+          <div class="mb-6"><label class="text-xs font-medium text-foreground mb-2 block">Cantidad</label><div class="inline-flex items-center gap-3 bg-card rounded-full px-1.5 py-1.5 boty-shadow"><button type="button" onclick="changeQuantity(-1)" class="w-8 h-8 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg></button><span id="quantity" class="w-6 text-center font-medium text-foreground text-sm">1</span><button type="button" onclick="changeQuantity(1)" class="w-8 h-8 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></button></div></div>
+          <div class="flex flex-col sm:flex-row gap-3 mb-8"><button type="button" id="addToCartBtn" onclick="addProductToCart()" class="flex-1 inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-xs tracking-wide boty-transition boty-shadow bg-primary text-primary-foreground hover:bg-primary/90">Agregar al Carrito</button><button type="button" onclick="openBuyNowModal()" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-transparent border border-foreground/20 text-foreground px-6 py-2.5 rounded-full text-xs tracking-wide boty-transition hover:bg-foreground/5">Comprar Ahora</button></div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3"><div class="flex flex-col items-center gap-1.5 p-3 rounded-md"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg><span class="text-[0.65rem] text-muted-foreground text-center">100% Hecho a Mano</span></div><div class="flex flex-col items-center gap-1.5 p-3 rounded-md"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span class="text-[0.65rem] text-muted-foreground text-center">Materiales de Calidad</span></div><div class="flex flex-col items-center gap-1.5 p-3 rounded-md"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/></svg><span class="text-[0.65rem] text-muted-foreground text-center">Diseños Únicos</span></div><div class="flex flex-col items-center gap-1.5 p-3 rounded-md"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><span class="text-[0.65rem] text-muted-foreground text-center">Hecho con Amor</span></div></div>
         </div>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-card pt-20 pb-10 relative overflow-hidden">
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none z-0"><span id="footerWatermark" class="font-serif text-[200px] sm:text-[200px] md:text-[400px] lg:text-[400px] xl:text-[400px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span></div>
+  <footer class="bg-card pt-16 pb-8 relative overflow-hidden">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none z-0"><span id="footerWatermark" class="font-serif text-[180px] sm:text-[220px] md:text-[300px] lg:text-[350px] font-bold text-white/20 whitespace-nowrap leading-none">Destellos by Yoki</span></div>
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
-        <div class="col-span-2 md:col-span-1"><h2 id="footerSiteName" class="font-serif text-3xl text-foreground mb-4">Destellos by Yoki</h2><p class="text-sm text-muted-foreground leading-relaxed mb-6">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p><div class="flex gap-4" id="footerSocialLinks"></div></div>
-        <div><h3 class="font-medium text-foreground mb-4">Tienda</h3><ul class="space-y-3"><li><a href="shop.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Todos los productos</a></li></ul></div>
-        <div><h3 class="font-medium text-foreground mb-4">Sobre nosotros</h3><ul class="space-y-3"><li><a href="about.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Sobre Nosotros</a></li></ul></div>
-        <div><h3 class="font-medium text-foreground mb-4">Ayuda</h3><ul class="space-y-3"><li><a href="#" id="footerWhatsappLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">WhatsApp</a></li><li><a href="#" id="footerInstagramLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Instagram</a></li></ul></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div class="col-span-2 md:col-span-1"><h2 id="footerSiteName" class="font-serif text-2xl text-foreground mb-3">Destellos by Yoki</h2><p class="text-sm text-muted-foreground leading-relaxed mb-5">Bisutería, decoración y crochet hecho a mano con amor y dedicación.</p><div class="flex gap-3" id="footerSocialLinks"></div></div>
+        <div><h3 class="font-medium text-foreground mb-3 text-sm">Tienda</h3><ul class="space-y-2"><li><a href="shop.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Todos los productos</a></li></ul></div>
+        <div><h3 class="font-medium text-foreground mb-3 text-sm">Sobre nosotros</h3><ul class="space-y-2"><li><a href="about.html" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Sobre Nosotros</a></li></ul></div>
+        <div><h3 class="font-medium text-foreground mb-3 text-sm">Ayuda</h3><ul class="space-y-2"><li><a href="#" id="footerWhatsappLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">WhatsApp</a></li><li><a href="#" id="footerInstagramLink" class="text-sm text-muted-foreground hover:text-foreground boty-transition">Instagram</a></li></ul></div>
       </div>
-      <div class="pt-10 border-t border-border/50"><div class="flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-sm text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p></div></div>
+      <div class="pt-8 border-t border-border/50"><div class="flex flex-col md:flex-row items-center justify-between gap-3"><p class="text-xs text-muted-foreground">&copy; <span id="currentYear"></span> <span id="footerCopyrightName">Destellos by Yoki</span>. Todos los derechos reservados.</p></div></div>
     </div>
   </footer>
 
@@ -653,14 +672,14 @@
       const footerSocialLinks = document.getElementById('footerSocialLinks');
       if (footerSocialLinks) {
         footerSocialLinks.innerHTML = `
-          <a href="${socialSettings.instagram}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Instagram">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="${socialSettings.instagram}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Instagram">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg>
           </a>
-          <a href="${socialSettings.facebook}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Facebook">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="${socialSettings.facebook}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Facebook">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
           </a>
-          <a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="WhatsApp">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="https://wa.me/${socialSettings.whatsapp}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="WhatsApp">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
           </a>
         `;
       }
@@ -843,7 +862,7 @@
       store.delete(id);
       transaction.oncomplete = () => { updateCartCount(); updateCartDrawer(); if (document.getElementById('checkoutModal').classList.contains('active')) updateCheckoutModal(); showNotification('🗑️ Producto eliminado del carrito', 'success'); };
     }
-    function updateQuantity(id, newQuantity) {
+    function updateQuantityInCart(id, newQuantity) {
       if (!db) return;
       const transaction = db.transaction([STORE_NAME], 'readwrite');
       const store = transaction.objectStore(STORE_NAME);
@@ -880,7 +899,7 @@
         if (cartItemsList) cartItemsList.classList.remove('hidden');
         if (cartFooter) cartFooter.classList.remove('hidden');
         if (cartItemsList) {
-          cartItemsList.innerHTML = items.map(item => `<div class="cart-item flex gap-4 py-4 border-b border-border/50" data-product-id="${item.id}"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-sm text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-xs text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-3"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) - 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">-</button><span class="px-3 py-1 text-sm">${item.quantity || 1}</span><button onclick="updateQuantity(${item.id}, ${(item.quantity || 1) + 1})" class="px-3 py-1 text-foreground/70 hover:text-foreground boty-transition">+</button></div><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join('');
+          cartItemsList.innerHTML = items.map(item => `<div class="cart-item flex gap-3 py-3 border-b border-border/50" data-product-id="${item.id}"><img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="goToProduct(${item.id})"><div class="flex-1 min-w-0"><div class="flex justify-between items-start"><div><h4 class="font-serif text-xs text-foreground cursor-pointer hover:text-primary" onclick="goToProduct(${item.id})">${item.name}</h4><p class="text-[0.65rem] text-muted-foreground mt-1">${item.tagline || ''}</p></div><button onclick="removeFromCart(${item.id})" class="text-muted-foreground hover:text-destructive boty-transition"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div><div class="flex justify-between items-center mt-2"><div class="flex items-center border border-border rounded-full"><button onclick="updateQuantityInCart(${item.id}, ${(item.quantity || 1) - 1})" class="px-2 py-0.5 text-foreground/70 hover:text-foreground boty-transition text-xs">-</button><span class="px-2 py-0.5 text-xs">${item.quantity || 1}</span><button onclick="updateQuantityInCart(${item.id}, ${(item.quantity || 1) + 1})" class="px-2 py-0.5 text-foreground/70 hover:text-foreground boty-transition text-xs">+</button></div><span class="font-medium text-foreground text-sm">$${item.price * (item.quantity || 1)}</span></div></div></div>`).join('');
         }
         const subtotal = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
         if (subtotalSpan) subtotalSpan.textContent = `$${subtotal}`;
@@ -893,7 +912,7 @@
       const items = await getCartItems();
       if (items.length === 0) { closeCheckoutModal(); showNotification('🛒 Tu carrito está vacío', 'info'); return; }
       const productsList = document.getElementById('checkoutProductsList');
-      productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground">${item.name}</h4><p class="text-xs text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-sm text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-2" title="Eliminar producto"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join('');
+      productsList.innerHTML = items.map(item => `<div class="modal-product-item"><img src="${item.image}" alt="${item.name}" class="modal-product-image"><div class="modal-product-info"><h4 class="font-medium text-foreground text-sm">${item.name}</h4><p class="text-[0.65rem] text-muted-foreground">${item.tagline || ''}</p><div class="flex justify-between items-center mt-1"><span class="text-xs text-foreground">Cantidad: ${item.quantity || 1}</span><span class="font-medium text-foreground text-sm">$${item.price * (item.quantity || 1)}</span></div></div><div class="modal-product-actions"><button onclick="removeFromCart(${item.id})" class="modal-remove-btn p-1.5" title="Eliminar producto"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></div>`).join('');
       const total = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
       document.getElementById('checkoutTotal').textContent = `$${total}`;
     }
@@ -913,7 +932,7 @@
       const notas = document.getElementById('checkoutNotas').value.trim();
       const total = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
       let mensaje = `*** *PEDIDO NUEVO - ${socialSettings.siteName}* ***\n\n--- PRODUCTOS ---\n`;
-      items.forEach((item, index) => { mensaje += `\n${index + 1}. ${item.name}\n   > TagLine: ${item.tagline || 'No especificada'}\n   > Cantidad: ${item.quantity || 1}\n   > Subtotal: $${item.price * (item.quantity || 1)}\n`; });
+      items.forEach((item, index) => { mensaje += `\n${index + 1}. ${item.name}\n   > Cantidad: ${item.quantity || 1}\n   > Subtotal: $${item.price * (item.quantity || 1)}\n`; });
       mensaje += `\n=== TOTAL DEL PEDIDO: $${total} ===\n`;
       if (notas) mensaje += `\n--- NOTAS ADICIONALES ---\n${notas}\n`;
       mensaje += `\n--------------------------------\n🕐 *¡En breve te contactaremos para confirmar!*\n\n*¡Gracias por elegir ${socialSettings.siteName}. Cada detalle está hecho con amor para ti!*`;
@@ -943,7 +962,7 @@
       if (!currentProduct) return;
       const notas = document.getElementById('notasAdicionales').value.trim();
       const total = currentProduct.price * quantity;
-      let mensaje = `*** *PEDIDO NUEVO - ${socialSettings.siteName}* ***\n\n  > *Producto:* ${currentProduct.name}\n  > *TagLine:* ${currentProduct.tagline || 'No especificada'}\n  > *Cantidad:* ${quantity}\n  > *Precio:* $${currentProduct.price}\n  > *Total:* $${total}\n`;
+      let mensaje = `*** *PEDIDO NUEVO - ${socialSettings.siteName}* ***\n\n  > *Producto:* ${currentProduct.name}\n  > *Cantidad:* ${quantity}\n  > *Precio unitario:* $${currentProduct.price}\n  > *Total:* $${total}\n`;
       if (notas) mensaje += `\n--- *NOTAS ADICIONALES* ---\n${notas}\n`;
       mensaje += `\n--------------------------------\n🕐 *¡En breve te contactaremos para confirmar!*\n\n*¡Gracias por elegir ${socialSettings.siteName}. Cada detalle está hecho con amor para ti!*`;
       const mensajeCodificado = encodeURIComponent(mensaje);
@@ -964,12 +983,12 @@
       mobileMenuBtn.addEventListener('click', function() {
         if (mobileMenu.classList.contains('max-h-0')) {
           mobileMenu.classList.remove('max-h-0');
-          mobileMenu.classList.add('max-h-64', 'py-2');
+          mobileMenu.classList.add('max-h-56', 'py-2');
           menuIcon.classList.add('hidden');
           closeIcon.classList.remove('hidden');
         } else {
           mobileMenu.classList.add('max-h-0');
-          mobileMenu.classList.remove('max-h-64', 'py-2');
+          mobileMenu.classList.remove('max-h-56', 'py-2');
           menuIcon.classList.remove('hidden');
           closeIcon.classList.add('hidden');
         }
@@ -1006,7 +1025,7 @@
     window.addProductToCart = addProductToCart;
     window.closeCart = closeCart;
     window.removeFromCart = removeFromCart;
-    window.updateQuantity = updateQuantity;
+    window.updateQuantityInCart = updateQuantityInCart;
     window.goToProduct = goToProduct;
     window.openBuyNowModal = openBuyNowModal;
     window.closeBuyNowModal = closeBuyNowModal;
